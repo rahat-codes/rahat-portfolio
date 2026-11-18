@@ -1,12 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Certificate, GraduationCap, Medal } from "lucide-react"
+import { Award, FileText, GraduationCap, Medal } from "lucide-react"
 import { certifications } from "../data/certifications"
 
 const iconMap: Record<string, any> = {
   award: Award,
-  certificate: Certificate,
+  certificate: FileText,
 }
 
 export default function Certifications() {

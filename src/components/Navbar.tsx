@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Menu, X, GitHub, Mail, Linkedin, Phone, MapPin, Code, GraduationCap, Award, Layers } from "lucide-react"
+import { Menu, X, Github, Mail, Linkedin, Phone, MapPin, Code, GraduationCap, Award, Layers } from "lucide-react"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -48,7 +48,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a href="https://github.com/rahat-codes" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors hover:text-accent-400 dark:text-white">
-              <GitHub className="w-4 h-4 mr-1 inline" /> GitHub
+              <Github className="w-4 h-4 mr-1 inline" /> GitHub
             </a>
           </div>
 
@@ -83,7 +83,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="block py-3 text-sm font-medium transition-colors hover:text-accent-400 dark:text-white flex items-center gap-2"
             >
-              <GitHub className="w-4 h-4" /> GitHub
+              <Github className="w-4 h-4" /> GitHub
             </a>
           </div>
         </div>
