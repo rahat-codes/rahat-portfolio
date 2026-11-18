@@ -11,7 +11,12 @@ interface ThemeContextType {
   toggleTheme: () => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "system",
+  setTheme: () => {},
+  resolvedTheme: "dark",
+  toggleTheme: () => {},
+})
 
 export function ThemeProvider({ children, defaultTheme = "system" }: { children: ReactNode; defaultTheme?: Theme }) {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
@@ -24,24 +29,35 @@ export function ThemeProvider({ children, defaultTheme = "system" }: { children:
   }, [])
 
   useEffect(() => {
-    updateResolvedTheme()
+    if (mounted) {
+      updateResolvedTheme()
+    }
   }, [theme])
 
   const updateResolvedTheme = () => {
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+      const systemTheme =
+        typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
       setResolvedTheme(systemTheme)
-      document.documentElement.classList.toggle("dark", systemTheme === "dark")
+      if (typeof document !== "undefined") {
+        document.documentElement.classList.toggle("dark", systemTheme === "dark")
+      }
     } else {
       setResolvedTheme(theme)
-      document.documentElement.classList.toggle("dark", theme === "dark")
+      if (typeof document !== "undefined") {
+        document.documentElement.classList.toggle("dark", theme === "dark")
+      }
     }
   }
 
   const toggleTheme = () => {
     const newTheme = resolvedTheme === "dark" ? "light" : "dark"
     setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("theme", newTheme)
+    }
   }
 
   useEffect(() => {
@@ -51,10 +67,6 @@ export function ThemeProvider({ children, defaultTheme = "system" }: { children:
     }
   }, [])
 
-  if (!mounted) {
-    return <>{children}</>
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme, toggleTheme }}>
       {children}
@@ -63,9 +75,5 @@ export function ThemeProvider({ children, defaultTheme = "system" }: { children:
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider")
-  }
-  return context
+  return useContext(ThemeContext)
 }
