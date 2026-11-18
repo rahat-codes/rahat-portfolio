@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion"
 import { GraduationCap, Briefcase, Building2, Mail, Phone, MapPin, Github, Clock } from "lucide-react"
-import { personalInfo } from "@/data/personal"
-import { education } from "@/data/education"
+import { personalInfo } from "../data/personal"
+import { education } from "../data/education"
 
 export default function About() {
   return (

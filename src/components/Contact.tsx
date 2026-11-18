@@ -3,8 +3,8 @@
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react"
-import { personalInfo } from "@/data/personal"
-import { sanitizeHtml } from "@/lib/security"
+import { personalInfo } from "../data/personal"
+import { sanitizeHtml } from "../lib/security"
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)

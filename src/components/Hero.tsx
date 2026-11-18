@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Code, Layers, Award, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
-import { personalInfo } from "@/data/personal"
+import { personalInfo } from "../data/personal"
 
 // Simple scramble text effect component
 function ScrambleText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {

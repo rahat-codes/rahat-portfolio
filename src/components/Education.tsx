@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { GraduationCap } from "lucide-react"
-import { education } from "@/data/education"
+import { education } from "../data/education"
 
 export default function Education() {
   return (

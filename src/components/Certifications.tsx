@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Award, FileText, Medal } from "lucide-react"
-import { certifications } from "@/data/certifications"
+import { certifications } from "../data/certifications"
 
 const iconMap: Record<string, any> = {
   award: Award,

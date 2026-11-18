@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
-import { useTheme } from "@/components/ThemeProvider"
+import { useTheme } from "./ThemeProvider"
 import {
   Menu,
   X,
