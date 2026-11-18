@@ -155,8 +155,8 @@ export default function Contact() {
                   type="text"
                   name="name"
                   required
-                  maxLength="100"
-                  minLength="2"
+                  maxLength={100}
+                  minLength={2}
                   className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
                   placeholder="Your name"
                 />
@@ -167,7 +167,7 @@ export default function Contact() {
                   type="email"
                   name="email"
                   required
-                  maxLength="254"
+                  maxLength={254}
                   className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
                   placeholder="you@example.com"
                 />
@@ -178,8 +178,8 @@ export default function Contact() {
                   name="message"
                   rows={4}
                   required
-                  maxLength="2000"
-                  minLength="10"
+                  maxLength={2000}
+                  minLength={10}
                   className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
                   placeholder="Tell me about your project..."
                 />
