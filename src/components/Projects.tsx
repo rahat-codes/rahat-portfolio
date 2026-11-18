@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Layers, Github, ExternalLink, Code, Smartphone, Microscope, Cpu } from "lucide-react"
-import { projects } from "../data/projects"
+import Image from "next/image"
+import { ExternalLink, Code, Smartphone, Microscope, Cpu, Layers, Github } from "lucide-react"
+import { projects } from "@/data/projects"
 
 const techIconMap: Record<string, any> = {
   React: Code,
@@ -10,75 +11,162 @@ const techIconMap: Record<string, any> = {
   Python: Microscope,
   "C++": Cpu,
   Docker: Layers,
-  "FastAPI": Code,
+  FastAPI: Code,
 }
 
 export default function Projects() {
+  const featured = projects.filter((p) => p.featured)
+  const others = projects.filter((p) => !p.featured)
+
   return (
-    <section id="projects" className="py-20 dark:bg-dark-800/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="section-container">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Projects</h2>
-            <p className="text-muted-foreground mt-2">Selected works from coursework, research, and personal builds</p>
-          </div>
-          <a
-            href="https://github.com/rahat-codes"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium transition-colors"
-          >
-            <Github className="w-4 h-4" /> View All on GitHub
-          </a>
+        <div>
+          <h2 className="text-4xl font-bold tracking-tight">Projects</h2>
+          <p className="text-muted-foreground mt-2">Selected works from coursework, research, and personal builds</p>
         </div>
+        <a
+          href="https://github.com/rahat-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border bg-transparent hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-all"
+        >
+          <Github className="w-4 h-4" /> View All on GitHub
+        </a>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="group rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 p-6"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <span className="px-2 py-1 rounded text-xs font-medium bg-white/5 text-accent-400 border border-accent-400/20">
-                  {project.featured ? "Featured" : "Project"}
+      {/* Featured projects - larger layout */}
+      <div className="grid md:grid-cols-2 gap-8 mb-16">
+        {featured.map((project, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            whileHover={{ y: -5 }}
+            className="group relative rounded-2xl border border-border bg-card overflow-hidden"
+          >
+            {/* Image with hover effect */}
+            <div className="relative h-48 overflow-hidden">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={i === 0}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-xl bg-background text-foreground font-medium shadow-lg hover:bg-primary hover:text-primary-foreground transition-all"
+                >
+                  <ExternalLink className="w-4 h-4" /> Live Demo
+                </a>
+              )}
+            </div>
+
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-3">
+                <span className="px-3 py-1 rounded-lg bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                  Featured
                 </span>
-                {project.live && (
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-accent-400 hover:text-accent-300">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
-
-              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-sm text-accent-400 font-medium mb-3">{project.subtitle}</p>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.slice(0, 6).map((t) => (
-                  <span key={t} className="px-2 py-1 rounded bg-white/5 text-xs border border-white/5 text-muted-foreground">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="pt-4 border-t border-white/5 flex items-center gap-4">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm font-medium text-white hover:text-accent-400 transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Github className="w-4 h-4" /> GitHub
+                  <Github className="w-4 h-4 mr-1" /> GitHub
                 </a>
               </div>
-            </motion.div>
-          ))}
-        </div>
+
+              <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+              <p className="text-primary font-medium text-sm mb-3">{project.subtitle}</p>
+              <p className="text-sm text-muted-foreground mb-6 line-clamp-3">{project.description}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tech.slice(0, 6).map((t) => {
+                  const Icon = techIconMap[t]
+                  return (
+                    <span
+                      key={t}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium border border-border bg-secondary hover:border-primary hover:text-primary transition-all"
+                    >
+                      {Icon ? <Icon className="w-3 h-3 mr-1.5" /> : null}
+                      {t}
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+      {/* Other projects - compact grid */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {others.map((project, i) => (
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 + i * 0.08, duration: 0.5 }}
+            whileHover={{ y: -5 }}
+            className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-xl transition-all"
+          >
+            <div className="h-32 rounded-xl overflow-hidden mb-4">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+
+            <div className="flex justify-between items-start mb-2">
+              <span className="px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                Project
+              </span>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Github className="w-3 h-3 mr-1" />
+              </a>
+            </div>
+
+            <h3 className="text-lg font-bold text-foreground mb-1">{project.title}</h3>
+            <p className="text-primary font-medium text-xs mb-3">{project.subtitle}</p>
+            <p className="text-xs text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.slice(0, 4).map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-1 rounded text-[10px] font-medium border border-border bg-muted/50 text-muted-foreground"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+        </motion.div>
     </section>
   )
 }

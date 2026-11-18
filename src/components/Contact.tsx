@@ -2,9 +2,9 @@
 
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Github } from "lucide-react"
-import { personalInfo } from "../data/personal"
-import { sanitizeHtml } from "../lib/security"
+import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react"
+import { personalInfo } from "@/data/personal"
+import { sanitizeHtml } from "@/lib/security"
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -20,7 +20,7 @@ export default function Contact() {
     const name = formData.get("name") as string
     const email = formData.get("email") as string
     const message = formData.get("message") as string
-    const honeypot = formData.get("website") // honeypot field
+    const honeypot = formData.get("website")
 
     try {
       const res = await fetch("/api/contact", {
@@ -30,7 +30,7 @@ export default function Contact() {
           name: sanitizeHtml(name),
           email: sanitizeHtml(email),
           message: sanitizeHtml(message),
-          website: honeypot, // honeypot - bots fill this
+          website: honeypot,
         }),
       })
 
@@ -55,10 +55,20 @@ export default function Contact() {
   }, [])
 
   return (
-    <section id="contact" className="py-20 dark:bg-dark-800/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="section-container relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Decorative background */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -mr-48 -mt-24"></div>
+
+      <div className="relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get In Touch</h2>
+          <h2 className="text-4xl font-bold tracking-tight">Get In Touch</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             Open to collaborations, internships, and interesting projects. Let's build something great together.
           </p>
@@ -71,30 +81,33 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <div className="rounded-xl border border-white/10 bg-white/5 p-8">
-              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+            <div className="rounded-2xl glass-card p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <Mail className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-bold text-foreground">Contact Information</h3>
+              </div>
               <div className="space-y-5">
                 {[
                   {
-                    icon: <Mail className="w-5 h-5 text-accent-400" />,
+                    icon: <Mail className="w-5 h-5 text-primary" />,
                     label: "Email",
                     value: personalInfo.email,
                     href: `mailto:${personalInfo.email}`,
                   },
                   {
-                    icon: <Phone className="w-5 h-5 text-accent-400" />,
+                    icon: <Phone className="w-5 h-5 text-primary" />,
                     label: "Phone",
                     value: personalInfo.phone,
                     href: `tel:${personalInfo.phone}`,
                   },
                   {
-                    icon: <MapPin className="w-5 h-5 text-accent-400" />,
+                    icon: <MapPin className="w-5 h-5 text-primary" />,
                     label: "Location",
                     value: personalInfo.location,
                     href: null,
                   },
                   {
-                    icon: <Github className="w-5 h-5 text-accent-400" />,
+                    icon: <Github className="w-5 h-5 text-primary" />,
                     label: "GitHub",
                     value: "rahat-codes",
                     href: personalInfo.github,
@@ -105,15 +118,46 @@ export default function Contact() {
                     href={item.href}
                     target={item.href && item.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:bg-white/10 hover:border-accent-400/50 transition-colors ${item.href ? "" : "cursor-default"}`}
+                    className={`flex items-center gap-4 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-secondary transition-all ${
+                      item.href ? "" : "cursor-default"
+                    }`}
                   >
-                    <div className="p-2 rounded bg-white/5">{item.icon}</div>
+                    <div className="p-2 rounded bg-secondary">{item.icon}</div>
                     <div>
                       <div className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</div>
-                      <div className="text-sm font-medium">{item.value}</div>
+                      <div className="text-sm font-medium text-foreground">{item.value}</div>
                     </div>
                   </a>
                 ))}
+              </div>
+            </div>
+
+            {/* Social links */}
+            <div className="rounded-2xl glass-card p-6">
+              <h4 className="font-bold text-lg mb-4">Let's Connect</h4>
+              <div className="flex gap-4">
+                <a
+                  href="https://github.com/rahat-codes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:mhr1760@gmail.com"
+                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/rahat-codes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all opacity-50"
+                >
+                  <span className="text-sm">in</span>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -123,23 +167,23 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-8"
+            className="rounded-2xl glass-card p-8"
           >
             <h3 className="text-xl font-bold mb-6">Send a Message</h3>
 
             {status === "success" && (
-              <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm">
+              <div className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm">
                 {statusMessage}
               </div>
             )}
             {status === "error" && (
-              <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+              <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
                 {statusMessage}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Honeypot field - hidden from users, filled by bots */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Honeypot field */}
               <input
                 type="text"
                 name="website"
@@ -150,51 +194,60 @@ export default function Contact() {
               />
 
               <div>
-                <label className="block text-sm font-medium mb-1">Name</label>
+                <label className="block text-sm font-medium mb-2">Name</label>
                 <input
                   type="text"
                   name="name"
                   required
                   maxLength={100}
                   minLength={2}
-                  className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
+                  className="w-full px-4 py-3 rounded-xl bg-transparent border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/50"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
+                <label className="block text-sm font-medium mb-2">Email</label>
                 <input
                   type="email"
                   name="email"
                   required
                   maxLength={254}
-                  className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
+                  className="w-full px-4 py-3 rounded-xl bg-transparent border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/50"
                   placeholder="you@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Message</label>
+                <label className="block text-sm font-medium mb-2">Message</label>
                 <textarea
                   name="message"
-                  rows={4}
+                  rows={5}
                   required
                   maxLength={2000}
                   minLength={10}
-                  className="w-full px-4 py-2 rounded bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none transition-colors placeholder:text-muted-foreground/50"
+                  className="w-full px-4 py-3 rounded-xl bg-transparent border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground/50"
                   placeholder="Tell me about your project..."
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-accent-500 hover:bg-accent-400 text-white rounded-xl font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-accent-500/20"
+                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (
+                  <>
+                    Sending... <span className="animate-spin ml-2">⟳</span>
+                  </>
+                ) : (
+                  <>
+                    Send Message <ArrowRight className="w-4 h-4 ml-2" />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
         </div>
       </div>
+        </motion.div>
     </section>
   )
 }
