@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Briefcase, Clock, Building, Code2 } from "lucide-react"
-import { experience } from "@/data/experience"
+import { experience } from "../data/experience"
 
 const iconMap: Record<string, any> = {
   "Den of Builders (DOB)": Code2,

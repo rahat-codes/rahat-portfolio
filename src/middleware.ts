@@ -5,7 +5,7 @@
 
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { rateLimit, getClientIP } from '@/lib/security'
+import { rateLimit, getClientIP } from '../lib/security'
 
 // Routes that should be protected (add admin routes here when you build them)
 const PROTECTED_ROUTES = ['/admin']

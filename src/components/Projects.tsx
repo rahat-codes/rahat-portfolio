@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Layers, Github, ExternalLink, Code, Smartphone, Microscope, Cpu } from "lucide-react"
-import { projects } from "@/data/projects"
+import { projects } from "../data/projects"
 
 const techIconMap: Record<string, any> = {
   React: Code,

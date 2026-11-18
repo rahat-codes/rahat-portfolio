@@ -12,7 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { contactFormSchema, sanitizeContactForm, rateLimit, getClientIP, getCorsHeaders } from '@/lib/security'
+import { contactFormSchema, sanitizeContactForm, rateLimit, getClientIP, getCorsHeaders } from '../../../lib/security'
 
 // Honeypot field name - bots fill this, humans don't
 const HONEYPOT_FIELD = 'website'
