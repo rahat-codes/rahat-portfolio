@@ -41,11 +41,8 @@ README.md
 SECURITY.md
 SECURITY_AUDIT.md
 
-# Config files for local development (Vercel uses its own)
-tsconfig.json
-tailwind.config.js
-postcss.config.js
+# Config files are needed for Vercel Next.js build
+# tsconfig.json, tailwind.config.js, postcss.config.js are intentionally NOT ignored
 
-# Package lock files (Vercel regenerates)
-package-lock.json
-pnpm-lock.yaml
+# Package lock files ensure deterministic installs
+# package-lock.json, pnpm-lock.yaml are intentionally NOT ignored
