@@ -110,17 +110,21 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000',
 ]
 
-export function getCorsHeaders(origin?: string | null) {
-  const isAllowed = origin ? ALLOWED_ORIGINS.includes(origin) : false
-  const allowOrigin = isAllowed ? origin : ALLOWED_ORIGINS[0]
-
-  return {
-    'Access-Control-Allow-Origin': allowOrigin,
+export function getCorsHeaders(
+  origin?: string | null,
+): Record<string, string> {
+  const headers: Record<string, string> = {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin',
   }
+
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    headers['Access-Control-Allow-Origin'] = origin
+  }
+
+  return headers
 }
 
 // ---------------------------------------------------------------------------
