@@ -1,19 +1,5 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { JetBrains_Mono } from "next/font/google"
 import { ThemeProvider } from "../components/ThemeProvider"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700", "800"],
-})
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500", "600"],
-})
 
 export const metadata: Metadata = {
   title: "Rahat Md Mahadi Hasan | AI & Computer Engineering Student",
@@ -47,9 +33,9 @@ export default function RootLayout({
 }) {
   return (
     <ThemeProvider>
-      <html lang="en" className={inter.className} suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <head />
-        <body className={`${inter.variable} ${jetBrainsMono.variable} antialiased`}>
+        <body className="font-sans antialiased">
           <a href="#main-content" className="skip-link">Skip to main content</a>
           {children}
         </body>
