@@ -106,7 +106,7 @@ export default function About() {
                   ].map((item) => (
                     <a
                       key={item.label}
-                      href={item.href}
+                      href={item.href ?? undefined}
                       target={item.href && item.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
                       className={`flex items-center gap-3 p-3 rounded-xl border border-border hover:bg-secondary hover:text-primary-foreground transition-colors ${
