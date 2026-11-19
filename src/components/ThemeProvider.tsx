@@ -11,27 +11,18 @@ interface ThemeContextType {
   toggleTheme: () => void
 }
 
-const ThemeContext = createContext<ThemeContextType>({
-  theme: "system",
-  setTheme: () => {},
-  resolvedTheme: "dark",
-  toggleTheme: () => {},
-})
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children, defaultTheme = "system" }: { children: ReactNode; defaultTheme?: Theme }) {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark")
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     updateResolvedTheme()
   }, [])
 
   useEffect(() => {
-    if (mounted) {
-      updateResolvedTheme()
-    }
+    updateResolvedTheme()
   }, [theme])
 
   const updateResolvedTheme = () => {
@@ -75,5 +66,10 @@ export function ThemeProvider({ children, defaultTheme = "system" }: { children:
 }
 
 export function useTheme() {
-  return useContext(ThemeContext)
+  const context = useContext(ThemeContext)
+  if (!context) {
+    // Fail-safe default for SSR or if Provider is missing
+    return { theme: "system", setTheme: () => {}, resolvedTheme: "dark", toggleTheme: () => {} }
+  }
+  return context
 }
