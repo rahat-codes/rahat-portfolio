@@ -45,9 +45,9 @@ const stats: NexaStat[] = [
 ]
 
 const character: NexaCharacter = {
-  src: "/images/hero/nexa-character.png",
-  width: 768,
-  height: 891,
+  src: "/images/hero/nexa-character-hq.webp",
+  width: 1164,
+  height: 1351,
   alt: "",
 }
 

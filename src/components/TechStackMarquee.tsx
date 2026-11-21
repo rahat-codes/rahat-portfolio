@@ -13,7 +13,7 @@ export default function TechStackMarquee() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="overflow-hidden border-y border-border/80 py-6"
+      className="relative z-[2] overflow-hidden border-y border-border/80 py-6"
     >
       <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
         Tools I use to bring ideas to life

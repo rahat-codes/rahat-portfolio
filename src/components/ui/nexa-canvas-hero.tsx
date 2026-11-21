@@ -471,6 +471,23 @@ const NEXA_CSS = `
   min-height: calc(var(--nx-vh, 100dvh) - var(--nx-nav));
 }
 
+[data-slot='nexa'] .nx-hero::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -8rem;
+  left: 0;
+  height: 12rem;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background)) 0%,
+    hsl(var(--background) / 0.94) 40%,
+    transparent 100%
+  );
+  content: '';
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
   [data-slot='nexa'] .nx-hero {
     height: calc(var(--nx-vh, 100dvh) - var(--nx-nav));
