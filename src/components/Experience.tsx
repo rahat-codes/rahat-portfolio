@@ -15,42 +15,39 @@ export default function Experience() {
     <section id="experience" className="section-container">
       <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
         <div>
+          <span className="section-kicker">02 / Experience</span>
           <h2 className="text-4xl font-bold tracking-tight">Experience</h2>
           <p className="text-muted-foreground mt-2">Professional & extracurricular journey</p>
         </div>
       </div>
 
       <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-10 top-0 bottom-0 w-0.5 bg-border"></div>
+        <div className="absolute bottom-8 left-5 top-8 w-px bg-border"></div>
 
-        {experience.map((exp, i) => {
+        {experience.map((exp) => {
           const Icon = iconMap[exp.company] || Briefcase
-          const isOdd = i % 2 === 0
           return (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, x: isOdd ? 40 : -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              key={exp.company}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`relative mb-16 pl-14 ${isOdd ? "text-right" : ""}`}
+              className="group relative mb-5 rounded-xl border border-border bg-card/70 p-6 pl-16 transition-colors hover:border-primary/40 sm:p-7 sm:pl-[4.5rem]"
             >
-              {/* Timeline dot */}
-              <div className={`absolute left-[-8px] top-3 w-4 h-4 rounded-full bg-primary ring-8 ring-primary/20 ${isOdd ? "right-[calc(100%+11px)]" : ""}`}></div>
-
-              <div className="mb-2 flex items-start gap-2 justify-between">
-                <div className="flex items-center gap-1">
-                  <Icon className="w-4 h-4 text-primary" />
-                  <span className="text-xs font-medium text-primary uppercase tracking-wider">{exp.type}</span>
-                </div>
-                <span className="text-xs font-mono text-muted-foreground">{exp.period}</span>
+              <div className="absolute left-[1.05rem] top-7 flex h-8 w-8 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
+                <Icon className="h-4 w-4" />
               </div>
 
-              <h3 className="text-xl font-bold text-foreground">{exp.company}</h3>
-              <p className="text-sm font-medium text-primary">{exp.role}</p>
-              <p className="text-sm text-muted-foreground">{exp.location}</p>
+              <div className="mb-2 flex items-start gap-2 justify-between">
+                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-primary">{exp.type}</span>
+                <span className="font-mono text-[11px] text-muted-foreground">{exp.period}</span>
+              </div>
+
+              <h3 className="text-lg font-semibold tracking-tight text-foreground">{exp.company}</h3>
+              <p className="mt-1 text-sm font-medium text-primary">{exp.role}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{exp.location}</p>
               <p className="mt-4 text-muted-foreground leading-relaxed">{exp.description}</p>
 
               <ul className="mt-4 space-y-2 list-disc list-inside text-sm text-muted-foreground">

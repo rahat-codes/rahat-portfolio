@@ -10,6 +10,7 @@ import {
   Sun,
   Moon,
   Code,
+  ArrowUpRight,
 } from "lucide-react"
 
 const navLinks = [
@@ -38,18 +39,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed z-50 w-full transition-all duration-300 ${
+      className={`fixed z-50 w-full border-b transition-all duration-300 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+          ? "border-border bg-background/90 backdrop-blur-xl"
+          : "border-border/60 bg-background/70 backdrop-blur-lg"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           {/* Brand */}
           <Link href="#home" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-accent-500 flex items-center justify-center shadow-lg shadow-primary/20">
-              <Code className="w-5 h-5 text-primary-foreground" />
+            <div className="w-8 h-8 rounded-lg border border-primary/30 bg-primary/10 flex items-center justify-center">
+              <Code className="w-4 h-4 text-primary" />
             </div>
             <span className="font-bold text-xl tracking-tight">
               R<span className="text-primary">MH</span>
@@ -62,7 +63,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:text-primary dark:text-foreground"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground transition-all hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -71,13 +72,16 @@ export default function Navbar() {
               href="https://github.com/rahat-codes"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg text-sm font-medium border border-border hover:bg-secondary hover:text-primary-foreground dark:border-input dark:text-foreground transition-all"
+              className="ml-2 inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium text-foreground transition-all hover:border-primary/50 hover:bg-secondary"
             >
-              <Github className="w-4 h-4 mr-2" /> GitHub
+              <Github className="w-4 h-4" /> GitHub
+            </Link>
+            <Link href="#contact" className="btn-primary ml-2 px-4 py-2 text-sm">
+              Let&apos;s talk <ArrowUpRight className="ml-1 h-4 w-4" />
             </Link>
             <button
               onClick={toggleTheme}
-              className="px-4 py-2 rounded-lg text-sm font-medium border border-border hover:bg-secondary dark:border-input dark:text-foreground transition-all"
+              className="ml-1 rounded-lg border border-border p-2 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
               aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
               {resolvedTheme === "dark" ? (
@@ -92,7 +96,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg border border-border hover:bg-secondary dark:border-input dark:text-foreground transition-all"
+              className="rounded-lg border border-border p-2 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground lg:hidden"
               aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
               {resolvedTheme === "dark" ? (
@@ -103,8 +107,10 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg border border-border hover:bg-secondary dark:border-input dark:text-foreground transition-all"
-              aria-label="Open menu"
+              className="rounded-lg border border-border p-2 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground lg:hidden"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -114,7 +120,7 @@ export default function Navbar() {
 
       {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="lg:hidden bg-card border-b border-border">
+        <div id="mobile-navigation" className="border-b border-border bg-background/95 backdrop-blur-xl lg:hidden">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <Link
@@ -135,17 +141,6 @@ export default function Navbar() {
               >
                 <Github className="w-4 h-4" /> GitHub
               </Link>
-              <button
-                onClick={toggleTheme}
-                className="w-full py-3 px-4 rounded-xl text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground flex items-center justify-between"
-              >
-                {resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                {resolvedTheme === "dark" ? (
-                  <Sun className="w-4 h-4" />
-                ) : (
-                  <Moon className="w-4 h-4" />
-                )}
-              </button>
             </div>
           </div>
         </div>

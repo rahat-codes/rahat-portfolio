@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useState, useSyncExternalStore, type ReactNode } from "react"
 
 type Theme = "light" | "dark" | "system"
 
@@ -13,23 +13,30 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children, defaultTheme = "system" }: { children: ReactNode; defaultTheme?: Theme }) {
+const subscribeToSystemTheme = (callback: () => void) => {
+  const media = window.matchMedia("(prefers-color-scheme: dark)")
+  media.addEventListener("change", callback)
+  return () => media.removeEventListener("change", callback)
+}
+
+const getSystemThemeSnapshot = () =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches
+
+const getServerSystemThemeSnapshot = () => false
+
+export function ThemeProvider({ children, defaultTheme = "dark" }: { children: ReactNode; defaultTheme?: Theme }) {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
-  const [systemDark, setSystemDark] = useState(() =>
-    typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
+  const systemDark = useSyncExternalStore(
+    subscribeToSystemTheme,
+    getSystemThemeSnapshot,
+    getServerSystemThemeSnapshot,
   )
   const resolvedTheme: "light" | "dark" =
     theme === "system" ? (systemDark ? "dark" : "light") : theme
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)")
-    const handleChange = () => setSystemDark(media.matches)
-    media.addEventListener("change", handleChange)
-    return () => media.removeEventListener("change", handleChange)
-  }, [])
-
-  useEffect(() => {
     document.documentElement.classList.toggle("dark", resolvedTheme === "dark")
+    document.documentElement.classList.toggle("light", resolvedTheme === "light")
   }, [resolvedTheme])
 
   const toggleTheme = () => {

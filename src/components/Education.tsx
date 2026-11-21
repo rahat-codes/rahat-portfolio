@@ -8,6 +8,7 @@ export default function Education() {
   return (
     <section id="education" className="section-container">
       <div className="mb-12">
+        <span className="section-kicker">05 / Education</span>
         <h2 className="text-4xl font-bold tracking-tight">Education</h2>
         <p className="text-muted-foreground mt-2">Academic background</p>
       </div>
@@ -21,7 +22,7 @@ export default function Education() {
             transition={{ delay: i * 0.1, duration: 0.5 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card p-8 mb-8 hover:border-primary/50 transition-all group"
+            className="group mb-8 rounded-2xl border border-border bg-card/75 p-8 transition-all hover:border-primary/40"
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
               <div>

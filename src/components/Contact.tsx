@@ -67,6 +67,7 @@ export default function Contact() {
 
       <div className="relative z-10">
         <div className="text-center mb-16">
+          <span className="section-kicker">07 / Contact</span>
           <h2 className="text-4xl font-bold tracking-tight">Get In Touch</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             Open to collaborations, internships, and interesting projects. Let&apos;s build something great together.

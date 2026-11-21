@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "../components/ThemeProvider"
+import "./globals.css"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rahat-portfolio.vercel.app"),
@@ -33,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head />
       <body className="font-sans antialiased">
         <ThemeProvider>

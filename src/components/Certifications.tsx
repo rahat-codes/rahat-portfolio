@@ -34,6 +34,7 @@ export default function Certifications() {
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
         <div>
+          <span className="section-kicker">04 / Recognition</span>
           <h2 className="text-4xl font-bold tracking-tight">Certifications & Honors</h2>
           <p className="text-muted-foreground mt-2">Academic achievements and professional certifications</p>
         </div>
@@ -49,7 +50,7 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-xl transition-all"
+              className="rounded-2xl border border-border bg-card/75 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-black/10"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div className={`w-2.5 h-2.5 rounded-full ${config.color}`} />
@@ -57,8 +58,8 @@ export default function Certifications() {
                   {config.label}
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl ${config.bg} flex items-center justify-center mb-4">
-                <Icon className="w-5 h-5 {config.color}" />
+              <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${config.bg}`}>
+                <Icon className={`h-5 w-5 ${config.color}`} />
               </div>
               <h3 className="font-bold text-lg text-foreground mb-1">{cert.name}</h3>
               <p className="text-sm text-primary font-medium mb-1">{cert.issuer}</p>

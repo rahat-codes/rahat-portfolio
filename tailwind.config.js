@@ -41,6 +41,9 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          400: "#22d3ee",
+          500: "#06b6d4",
+          600: "#0891b2",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -50,11 +53,6 @@ module.exports = {
           900: "#0a0a0b",
           800: "#141415",
           700: "#1e1e20",
-        },
-        accent: {
-          400: "#22d3ee",
-          500: "#06b6d4",
-          600: "#0891b2",
         },
       },
       borderRadius: {

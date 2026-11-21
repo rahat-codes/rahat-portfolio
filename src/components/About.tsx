@@ -19,8 +19,9 @@ export default function About() {
           {/* Left: Content */}
           <div className="lg:col-span-7 space-y-10">
             <div className="flex flex-col space-y-3">
+              <span className="section-kicker">01 / Profile</span>
               <h2 className="text-4xl font-bold tracking-tight">About Me</h2>
-              <p className="text-primary">Personal Background</p>
+              <p className="text-muted-foreground">Personal background</p>
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed">

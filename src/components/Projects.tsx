@@ -29,6 +29,7 @@ export default function Projects() {
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
         <div>
+          <span className="section-kicker">03 / Selected work</span>
           <h2 className="text-4xl font-bold tracking-tight">Projects</h2>
           <p className="text-muted-foreground mt-2">Selected works from coursework, research, and personal builds</p>
         </div>
@@ -51,7 +52,7 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
             whileHover={{ y: -5 }}
-            className="group relative rounded-2xl border border-border bg-card overflow-hidden"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card/80 transition-colors hover:border-primary/35"
           >
             {/* Image with hover effect */}
             <div className="relative h-48 overflow-hidden">
@@ -125,7 +126,7 @@ export default function Projects() {
             whileHover={{ y: -5 }}
             className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-xl transition-all"
           >
-            <div className="h-32 rounded-xl overflow-hidden mb-4">
+            <div className="relative mb-4 h-32 overflow-hidden rounded-xl border border-border">
               <Image
                 src={project.image}
                 alt={project.title}
