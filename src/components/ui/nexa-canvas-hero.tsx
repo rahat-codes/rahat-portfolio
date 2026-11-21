@@ -674,7 +674,11 @@ const NEXA_CSS = `
 }
 
 [data-slot='nexa'] .nx-figure-inner > img {
-  filter: contrast(1.08) saturate(1.06);
+  filter:
+    brightness(1.035)
+    contrast(1.1)
+    saturate(1.02)
+    drop-shadow(0 14px 30px rgb(0 0 0 / 0.32));
   transform: translateZ(0) scale(1);
   transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -684,11 +688,16 @@ const NEXA_CSS = `
 }
 
 [data-slot='nexa'] .nx-rim {
-  background: linear-gradient(258deg, color-mix(in oklab, var(--nx-accent) 48%, transparent) 0%, transparent 36%);
+  background: linear-gradient(
+    258deg,
+    color-mix(in oklab, var(--nx-accent) 82%, white 18%) 0%,
+    color-mix(in oklab, var(--nx-accent) 38%, transparent) 24%,
+    transparent 54%
+  );
   -webkit-mask: var(--nx-src) center / 100% 100% no-repeat;
   mask: var(--nx-src) center / 100% 100% no-repeat;
-  mix-blend-mode: soft-light;
-  opacity: 0.7;
+  mix-blend-mode: screen;
+  opacity: 0.34;
   pointer-events: none;
 }
 
