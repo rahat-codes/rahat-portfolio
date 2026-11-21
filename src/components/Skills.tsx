@@ -1,26 +1,23 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { skills } from "../data/skills"
+import SectionHeader from "./SectionHeader"
+import SpotlightCard from "./ui/SpotlightCard"
 
 export default function Skills() {
   return (
     <section id="skills" className="section-container">
-      <div className="mb-12">
-        <span className="section-kicker">06 / Toolkit</span>
-        <h2 className="text-4xl font-bold tracking-tight">Technical Skills</h2>
-        <p className="text-muted-foreground mt-2">Technologies and tools I work with</p>
-      </div>
+      <SectionHeader
+        eyebrow="05 / Toolkit"
+        title="Technical Skills"
+        description="Technologies and tools I work with"
+      />
 
       <div className="grid md:grid-cols-2 gap-8">
         {skills.map((category, i) => (
-          <motion.div
+          <SpotlightCard
             key={category.category}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            delay={i * 0.1}
             className="rounded-2xl border border-border bg-card/75 p-6 transition-colors hover:border-primary/35"
           >
             <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
@@ -43,7 +40,7 @@ export default function Skills() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </div>
     </section>

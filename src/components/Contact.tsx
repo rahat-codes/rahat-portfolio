@@ -4,6 +4,7 @@ import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react"
 import { personalInfo } from "../data/personal"
+import SectionHeader from "./SectionHeader"
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -66,13 +67,13 @@ export default function Contact() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -mr-48 -mt-24"></div>
 
       <div className="relative z-10">
-        <div className="text-center mb-16">
-          <span className="section-kicker">07 / Contact</span>
-          <h2 className="text-4xl font-bold tracking-tight">Get In Touch</h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Open to collaborations, internships, and interesting projects. Let&apos;s build something great together.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="07 / Contact"
+          title="Get In Touch"
+          description="Open to collaborations, internships, and interesting projects. Let's build something great together."
+          align="center"
+          className="mx-auto mb-16 max-w-2xl"
+        />
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}

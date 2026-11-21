@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { GraduationCap, Building2, Github, Clock } from "lucide-react"
 import { personalInfo } from "../data/personal"
 import { education } from "../data/education"
+import SectionHeader from "./SectionHeader"
 
 export default function About() {
   return (
@@ -18,11 +19,12 @@ export default function About() {
         <div className="grid lg:grid-cols-12 gap-12">
           {/* Left: Content */}
           <div className="lg:col-span-7 space-y-10">
-            <div className="flex flex-col space-y-3">
-              <span className="section-kicker">01 / Profile</span>
-              <h2 className="text-4xl font-bold tracking-tight">About Me</h2>
-              <p className="text-muted-foreground">Personal background</p>
-            </div>
+            <SectionHeader
+              eyebrow="03 / Profile"
+              title="About Me"
+              description="Personal background"
+              className="mb-0"
+            />
 
             <p className="text-lg text-muted-foreground leading-relaxed">
               {personalInfo.bio}

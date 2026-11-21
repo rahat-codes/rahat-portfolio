@@ -4,7 +4,7 @@ A modern, motion-led personal portfolio website built with Next.js, Tailwind CSS
 
 ## About
 
-This portfolio showcases the work, experience, and achievements of **Rahat Md Mahadi Hasan**, an AI & Computer Engineering student at Dong-A University, Busan, South Korea.
+This portfolio showcases the work, experience, and achievements of **Rahat Md Mahadi Hasan**, an AI & Computer Engineering student at Tongmyong University, Busan, South Korea.
 
 ## Tech Stack
 

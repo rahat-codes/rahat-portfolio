@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { Award, FileText, Medal, type LucideIcon } from "lucide-react"
 import { certifications } from "../data/certifications"
+import SectionHeader from "./SectionHeader"
+import SpotlightCard from "./ui/SpotlightCard"
 
 const iconMap: Record<string, LucideIcon> = {
   award: Award,
@@ -33,11 +35,12 @@ export default function Certifications() {
         transition={{ duration: 0.8 }}
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
-        <div>
-          <span className="section-kicker">04 / Recognition</span>
-          <h2 className="text-4xl font-bold tracking-tight">Certifications & Honors</h2>
-          <p className="text-muted-foreground mt-2">Academic achievements and professional certifications</p>
-        </div>
+        <SectionHeader
+          eyebrow="06 / Recognition"
+          title="Certifications & Honors"
+          description="Academic achievements and professional certifications"
+          className="mb-0"
+        />
       </div>
 
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -45,11 +48,9 @@ export default function Certifications() {
           const Icon = iconMap[cert.type] || Medal
           const config = typeConfig[cert.type] || typeConfig.award
           return (
-            <motion.div
+            <SpotlightCard
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
+              delay={i * 0.08}
               className="rounded-2xl border border-border bg-card/75 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-black/10"
             >
               <div className="flex items-center gap-2 mb-4">
@@ -65,7 +66,7 @@ export default function Certifications() {
               <p className="text-sm text-primary font-medium mb-1">{cert.issuer}</p>
               <p className="text-xs text-muted-foreground mb-3">{cert.date}</p>
               <p className="text-[12px] text-muted-foreground leading-relaxed">{cert.description}</p>
-            </motion.div>
+            </SpotlightCard>
           )
         })}
       </div>

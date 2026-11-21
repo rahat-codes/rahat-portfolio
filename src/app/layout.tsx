@@ -5,12 +5,12 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL("https://rahat-portfolio.vercel.app"),
   title: "Rahat Md Mahadi Hasan | AI & Computer Engineering Student",
-  description: "Portfolio of Rahat Md Mahadi Hasan - AI & Computer Engineering student at Dong-A University, full-stack developer, ML enthusiast, and open source contributor.",
-  keywords: ["Rahat Md Mahadi Hasan", "portfolio", "AI", "Computer Engineering", "Machine Learning", "Full-Stack Developer", "Dong-A University"],
+  description: "Portfolio of Rahat Md Mahadi Hasan - AI & Computer Engineering student at Tongmyong University, full-stack developer, ML enthusiast, and open source contributor.",
+  keywords: ["Rahat Md Mahadi Hasan", "portfolio", "AI", "Computer Engineering", "Machine Learning", "Full-Stack Developer", "Tongmyong University"],
   authors: [{ name: "Rahat Md Mahadi Hasan" }],
   openGraph: {
     title: "Rahat Md Mahadi Hasan | AI & Computer Engineering Student",
-    description: "Portfolio of Rahat Md Mahadi Hasan - AI & Computer Engineering student at Dong-A University.",
+    description: "Portfolio of Rahat Md Mahadi Hasan - AI & Computer Engineering student at Tongmyong University.",
     type: "website",
     locale: "en_US",
     url: "https://rahat-portfolio.vercel.app",

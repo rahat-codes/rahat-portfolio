@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Hero from "../components/Hero"
+import TechStackMarquee from "../components/TechStackMarquee"
 import About from "../components/About"
 import Experience from "../components/Experience"
 import Projects from "../components/Projects"
@@ -16,12 +17,13 @@ export default function Home() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        <TechStackMarquee />
+        <Projects />
         <About />
         <Experience />
-        <Projects />
+        <Skills />
         <Certifications />
         <Education />
-        <Skills />
         <Contact />
       </main>
       <Footer />

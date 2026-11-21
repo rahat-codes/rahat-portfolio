@@ -9,7 +9,7 @@ export const personalInfo = {
   nationality: "Bangladesh",
   dob: "August 25, 2003",
   github: "https://github.com/rahat-codes",
-  bio: `I'm a passionate AI & Computer Engineering student at Dong-A University, specializing in machine learning, full-stack development, and embedded systems. I enjoy building practical solutions that bridge the gap between research and real-world applications.`,
+  bio: `I'm a passionate AI & Computer Engineering student at Tongmyong University, specializing in machine learning, full-stack development, and embedded systems. I enjoy building practical solutions that bridge the gap between research and real-world applications.`,
   languages: [
     { name: "English", level: "Upper", description: "Fluent in technical and professional communication" },
     { name: "Korean", level: "Intermediate", description: "TOPIK II preparing, exam planned January 2027" },

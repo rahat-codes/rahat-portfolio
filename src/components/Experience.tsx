@@ -1,8 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Code2, Building, Briefcase, type LucideIcon } from "lucide-react"
 import { experience } from "../data/experience"
+import SpotlightCard from "./ui/SpotlightCard"
+import SectionHeader from "./SectionHeader"
 
 const iconMap: Record<string, LucideIcon> = {
   "Den of Builders (DOB)": Code2,
@@ -14,11 +15,12 @@ export default function Experience() {
   return (
     <section id="experience" className="section-container">
       <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
-        <div>
-          <span className="section-kicker">02 / Experience</span>
-          <h2 className="text-4xl font-bold tracking-tight">Experience</h2>
-          <p className="text-muted-foreground mt-2">Professional & extracurricular journey</p>
-        </div>
+        <SectionHeader
+          eyebrow="04 / Experience"
+          title="Experience"
+          description="Professional & extracurricular journey"
+          className="mb-0"
+        />
       </div>
 
       <div className="relative">
@@ -27,13 +29,8 @@ export default function Experience() {
         {experience.map((exp) => {
           const Icon = iconMap[exp.company] || Briefcase
           return (
-            <motion.div
+            <SpotlightCard
               key={exp.company}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               className="group relative mb-5 rounded-xl border border-border bg-card/70 p-6 pl-16 transition-colors hover:border-primary/40 sm:p-7 sm:pl-[4.5rem]"
             >
               <div className="absolute left-[1.05rem] top-7 flex h-8 w-8 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
@@ -58,7 +55,7 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </SpotlightCard>
           )
         })}
       </div>

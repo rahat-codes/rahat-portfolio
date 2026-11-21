@@ -4,6 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { ExternalLink, Code, Smartphone, Microscope, Cpu, Layers, Github, type LucideIcon } from "lucide-react"
 import { projects } from "../data/projects"
+import SpotlightCard from "./ui/SpotlightCard"
+import AnimatedLink from "./ui/AnimatedLink"
+import SectionHeader from "./SectionHeader"
 
 const techIconMap: Record<string, LucideIcon> = {
   React: Code,
@@ -28,31 +31,29 @@ export default function Projects() {
         transition={{ duration: 0.8 }}
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:justify-between items-start mb-12">
-        <div>
-          <span className="section-kicker">03 / Selected work</span>
-          <h2 className="text-4xl font-bold tracking-tight">Projects</h2>
-          <p className="text-muted-foreground mt-2">Selected works from coursework, research, and personal builds</p>
-        </div>
-        <a
+        <SectionHeader
+          eyebrow="02 / Selected work"
+          title="Projects"
+          description="Selected work from coursework, research, and personal builds"
+          className="mb-0"
+        />
+        <AnimatedLink
           href="https://github.com/rahat-codes"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border bg-transparent hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-all"
+          external
+          variant="outline"
+          className="gap-2 text-sm"
         >
           <Github className="w-4 h-4" /> View All on GitHub
-        </a>
+        </AnimatedLink>
       </div>
 
       {/* Featured projects - larger layout */}
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         {featured.map((project, i) => (
-          <motion.div
+          <SpotlightCard
             key={i}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card/80 transition-colors hover:border-primary/35"
+            delay={i * 0.1}
+            className="group relative rounded-2xl border border-border bg-card/80 transition-colors hover:border-primary/35"
           >
             {/* Image with hover effect */}
             <div className="relative h-48 overflow-hidden">
@@ -111,20 +112,17 @@ export default function Projects() {
                 })}
               </div>
             </div>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </div>
 
       {/* Other projects - compact grid */}
       <div className="grid md:grid-cols-3 gap-6">
         {others.map((project, i) => (
-          <motion.div
+          <SpotlightCard
             key={project.title}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 + i * 0.08, duration: 0.5 }}
-            whileHover={{ y: -5 }}
-            className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-xl transition-all"
+            delay={0.2 + i * 0.08}
+            className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-xl"
           >
             <div className="relative mb-4 h-32 overflow-hidden rounded-xl border border-border">
               <Image
@@ -164,7 +162,7 @@ export default function Projects() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </div>
         </motion.div>

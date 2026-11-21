@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Code, Mail, MapPin, ArrowRight } from "lucide-react"
 import { personalInfo } from "../data/personal"
+import AnimatedLink from "./ui/AnimatedLink"
 
 // Simple scramble text effect component
 function ScrambleText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
@@ -88,18 +89,18 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-1">
-            <a
+            <AnimatedLink
               href="#projects"
-              className="btn-primary"
+              className="gap-2"
             >
-              View Work <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-            <a
+              View Work <ArrowRight className="h-4 w-4" />
+            </AnimatedLink>
+            <AnimatedLink
               href="#contact"
-              className="btn-outline"
+              variant="outline"
             >
               Get in Touch
-            </a>
+            </AnimatedLink>
           </div>
 
           <div className="grid max-w-xl grid-cols-3 gap-5 border-t border-border pt-7">
@@ -166,7 +167,7 @@ export default function Hero() {
               <div className="divide-y divide-border">
                 {[
                   { label: "Focus", value: "AI · Full-stack · Embedded" },
-                  { label: "Education", value: "Dong-A University" },
+                  { label: "Education", value: "Tongmyong University" },
                   { label: "Based in", value: "Busan, South Korea" },
                 ].map((item, index) => (
                   <motion.div
@@ -182,15 +183,15 @@ export default function Hero() {
                 ))}
               </div>
 
-              <a
+              <AnimatedLink
                 href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-center justify-between rounded-lg border border-border px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                external
+                variant="outline"
+                className="mt-2 w-full justify-between px-4 py-3 text-sm text-muted-foreground hover:border-primary/40 hover:text-primary"
               >
                 <span className="inline-flex items-center gap-2"><Code className="h-4 w-4" /> github.com/rahat-codes</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </AnimatedLink>
             </div>
           </motion.div>
         </motion.div>
