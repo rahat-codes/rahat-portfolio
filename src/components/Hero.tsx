@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState, type PointerEvent } from "react"
 import { motion } from "framer-motion"
 import { Code, Mail, MapPin, ArrowRight } from "lucide-react"
 import { personalInfo } from "../data/personal"
@@ -49,6 +49,69 @@ const statItems = [
 ]
 
 export default function Hero() {
+  const profileSurfaceRef = useRef<HTMLDivElement>(null)
+  const pointerPositionRef = useRef({ x: 0, y: 0 })
+  const animationFrameRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current)
+      }
+    }
+  }, [])
+
+  const updateProfileParallax = (event: PointerEvent<HTMLDivElement>) => {
+    const surface = profileSurfaceRef.current
+    if (!surface || event.pointerType === "touch") return
+
+    pointerPositionRef.current = { x: event.clientX, y: event.clientY }
+    if (animationFrameRef.current !== null) return
+
+    animationFrameRef.current = window.requestAnimationFrame(() => {
+      const bounds = surface.getBoundingClientRect()
+      const normalizedX = (pointerPositionRef.current.x - bounds.left) / bounds.width - 0.5
+      const normalizedY = (pointerPositionRef.current.y - bounds.top) / bounds.height - 0.5
+
+      surface.style.setProperty("--profile-rotate-x", `${(-normalizedY * 4).toFixed(2)}deg`)
+      surface.style.setProperty("--profile-rotate-y", `${(normalizedX * 6).toFixed(2)}deg`)
+      surface.style.setProperty("--profile-glare-x", `${((normalizedX + 0.5) * 100).toFixed(1)}%`)
+      surface.style.setProperty("--profile-glare-y", `${((normalizedY + 0.5) * 100).toFixed(1)}%`)
+      surface.dataset.parallaxActive = "true"
+
+      surface.querySelectorAll<HTMLElement>(".profile-parallax-layer").forEach((layer) => {
+        const depth = Number(layer.dataset.parallaxDepth)
+        layer.style.setProperty("--layer-x", `${(normalizedX * depth * 12).toFixed(2)}px`)
+        layer.style.setProperty("--layer-y", `${(normalizedY * depth * 12).toFixed(2)}px`)
+        layer.style.setProperty("--layer-z", `${(depth * 10).toFixed(2)}px`)
+      })
+
+      animationFrameRef.current = null
+    })
+  }
+
+  const resetProfileParallax = () => {
+    if (animationFrameRef.current !== null) {
+      window.cancelAnimationFrame(animationFrameRef.current)
+      animationFrameRef.current = null
+    }
+
+    const surface = profileSurfaceRef.current
+    if (!surface) return
+
+    surface.dataset.parallaxActive = "false"
+    surface.style.setProperty("--profile-rotate-x", "0deg")
+    surface.style.setProperty("--profile-rotate-y", "0deg")
+    surface.style.setProperty("--profile-glare-x", "50%")
+    surface.style.setProperty("--profile-glare-y", "50%")
+
+    surface.querySelectorAll<HTMLElement>(".profile-parallax-layer").forEach((layer) => {
+      layer.style.setProperty("--layer-x", "0px")
+      layer.style.setProperty("--layer-y", "0px")
+      layer.style.setProperty("--layer-z", "0px")
+    })
+  }
+
   return (
     <section id="home" className="relative flex min-h-[92vh] items-center overflow-hidden pb-16 pt-28">
       <div className="pointer-events-none absolute -right-36 top-1/4 h-96 w-96 rounded-full bg-primary/[0.07] blur-[120px]" />
@@ -137,61 +200,73 @@ export default function Hero() {
           <motion.div
             whileHover={{ y: -4 }}
             transition={{ duration: 0.25 }}
-            className="group overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl shadow-black/20"
+            className="profile-parallax-card group overflow-hidden rounded-2xl border border-border bg-card/90 shadow-2xl shadow-black/20"
+            onPointerMove={updateProfileParallax}
+            onPointerLeave={resetProfileParallax}
+            onPointerCancel={resetProfileParallax}
           >
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-red-400/80" />
-                <span className="h-2 w-2 rounded-full bg-yellow-400/80" />
-                <span className="h-2 w-2 rounded-full bg-primary/80" />
-              </div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                profile / 001
-              </span>
-              <Code className="h-4 w-4 text-primary" />
-            </div>
-
-            <div className="p-6 sm:p-8">
-              <div className="flex items-center gap-5 border-b border-border pb-7">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.08] font-mono text-2xl font-semibold tracking-tight text-primary shadow-[0_0_40px_hsl(var(--primary-glow))]">
-                  RMH
+            <div
+              ref={profileSurfaceRef}
+              className="profile-parallax-surface"
+              data-parallax-active="false"
+            >
+              <div className="profile-parallax-layer flex items-center justify-between border-b border-border px-5 py-4" data-parallax-depth="0.25">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-red-400/80" />
+                  <span className="h-2 w-2 rounded-full bg-yellow-400/80" />
+                  <span className="h-2 w-2 rounded-full bg-primary/80" />
                 </div>
-                <div className="min-w-0">
-                  <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">Engineer &amp; builder</p>
-                  <h2 className="mt-2 text-xl font-semibold leading-snug tracking-tight text-foreground">
-                    {personalInfo.name}
-                  </h2>
-                </div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  profile / 001
+                </span>
+                <Code className="h-4 w-4 text-primary" />
               </div>
 
-              <div className="divide-y divide-border">
-                {[
-                  { label: "Focus", value: "AI · Full-stack · Embedded" },
-                  { label: "Education", value: "Tongmyong University" },
-                  { label: "Based in", value: "Busan, South Korea" },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.35 + index * 0.1 }}
-                    className="flex items-center justify-between gap-4 py-4"
+              <div className="p-6 sm:p-8">
+                <div className="profile-parallax-layer flex items-center gap-5 border-b border-border pb-7" data-parallax-depth="0.45">
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.08] font-mono text-2xl font-semibold tracking-tight text-primary shadow-[0_0_40px_hsl(var(--primary-glow))]">
+                    RMH
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">Engineer &amp; builder</p>
+                    <h2 className="mt-2 text-xl font-semibold leading-snug tracking-tight text-foreground">
+                      {personalInfo.name}
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-border">
+                  {[
+                    { label: "Focus", value: "AI · Full-stack · Embedded" },
+                    { label: "Education", value: "Tongmyong University" },
+                    { label: "Based in", value: "Busan, South Korea" },
+                  ].map((item, index) => (
+                    <div className="profile-parallax-layer" data-parallax-depth={0.6 + index * 0.12} key={item.label}>
+                      <motion.div
+                        initial={{ opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.35 + index * 0.1 }}
+                        className="flex items-center justify-between gap-4 py-4"
+                      >
+                        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{item.label}</span>
+                        <span className="text-right text-sm font-medium text-foreground">{item.value}</span>
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="profile-parallax-layer" data-parallax-depth="1">
+                  <AnimatedLink
+                    href={personalInfo.github}
+                    external
+                    variant="outline"
+                    className="mt-2 w-full justify-between px-4 py-3 text-sm text-muted-foreground hover:border-primary/40 hover:text-primary"
                   >
-                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{item.label}</span>
-                    <span className="text-right text-sm font-medium text-foreground">{item.value}</span>
-                  </motion.div>
-                ))}
+                    <span className="inline-flex items-center gap-2"><Code className="h-4 w-4" /> github.com/rahat-codes</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </AnimatedLink>
+                </div>
               </div>
-
-              <AnimatedLink
-                href={personalInfo.github}
-                external
-                variant="outline"
-                className="mt-2 w-full justify-between px-4 py-3 text-sm text-muted-foreground hover:border-primary/40 hover:text-primary"
-              >
-                <span className="inline-flex items-center gap-2"><Code className="h-4 w-4" /> github.com/rahat-codes</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </AnimatedLink>
             </div>
           </motion.div>
         </motion.div>

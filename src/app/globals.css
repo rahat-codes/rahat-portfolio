@@ -109,6 +109,44 @@
 }
 
 @layer components {
+  .profile-parallax-card {
+    perspective: 1100px;
+    transform-style: preserve-3d;
+  }
+
+  .profile-parallax-surface {
+    position: relative;
+    transform: rotateX(var(--profile-rotate-x, 0deg)) rotateY(var(--profile-rotate-y, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .profile-parallax-surface::after {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    background: radial-gradient(
+      320px circle at var(--profile-glare-x, 50%) var(--profile-glare-y, 50%),
+      hsl(var(--foreground) / 0.075),
+      transparent 72%
+    );
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease;
+  }
+
+  .profile-parallax-surface[data-parallax-active="true"]::after {
+    opacity: 1;
+  }
+
+  .profile-parallax-layer {
+    position: relative;
+    transform: translate3d(var(--layer-x, 0px), var(--layer-y, 0px), var(--layer-z, 0px));
+    transform-style: preserve-3d;
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   .vui-icon-frame {
     display: inline-flex;
     flex-shrink: 0;
@@ -557,6 +595,17 @@ button:not(:disabled):hover svg.lucide {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .profile-parallax-surface,
+  .profile-parallax-surface::after,
+  .profile-parallax-layer {
+    transition: none;
+  }
+
+  .profile-parallax-surface,
+  .profile-parallax-layer {
+    transform: none;
+  }
+
   svg.lucide,
   .vui-icon-frame {
     transition: none;
