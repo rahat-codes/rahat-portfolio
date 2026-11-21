@@ -704,6 +704,14 @@ const NEXA_CSS = `
   transform: translateZ(28px) scale(1.035);
 }
 
+.light [data-slot='nexa'] .nx-figure-inner > img {
+  filter:
+    brightness(1.06)
+    contrast(1.08)
+    saturate(.96)
+    drop-shadow(0 14px 28px rgb(15 23 42 / 0.18));
+}
+
 [data-slot='nexa'] .nx-rim {
   background: linear-gradient(
     258deg,
@@ -716,6 +724,11 @@ const NEXA_CSS = `
   mix-blend-mode: screen;
   opacity: 0.34;
   pointer-events: none;
+}
+
+.light [data-slot='nexa'] .nx-rim {
+  mix-blend-mode: multiply;
+  opacity: 0.18;
 }
 
 @media (prefers-reduced-motion: reduce) {

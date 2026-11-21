@@ -37,8 +37,8 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-2">
               <div className="flex size-8 items-center justify-center rounded-xl bg-hero-gradient">
-                <span className="text-[10px] font-bold text-white">
-                  R<span className="text-primary">MH</span>
+                <span className="text-[10px] font-black tracking-[-0.04em] text-primary-foreground">
+                  R<span className="text-primary-foreground/75">MH</span>
                 </span>
               </div>
               <span className="text-xl font-black tracking-[-0.04em]">

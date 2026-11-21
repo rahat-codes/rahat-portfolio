@@ -102,8 +102,10 @@ export default function About() {
             >
               <div className="rounded-2xl glass-card p-8">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-hero-gradient flex items-center justify-center shadow-lg shadow-primary/30">
-                    <span className="text-2xl font-bold text-white">R<span className="text-primary">MH</span></span>
+                  <div className="relative flex size-16 items-center justify-center rounded-full border border-primary/25 bg-hero-gradient shadow-[0_12px_32px_hsl(var(--primary)/0.22)] ring-4 ring-primary/5">
+                    <span className="text-xl font-black tracking-[-0.06em] text-primary-foreground">
+                      R<span className="text-primary-foreground/75">MH</span>
+                    </span>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-foreground">{personalInfo.name}</div>
