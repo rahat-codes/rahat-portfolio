@@ -33,7 +33,7 @@ export default function Skills() {
                   </div>
                   <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-primary to-accent-500 transition-all duration-1000"
+                      className="h-full bg-hero-gradient transition-all duration-1000"
                       style={{ width: `${skill.level}%` }}
                     />
                   </div>

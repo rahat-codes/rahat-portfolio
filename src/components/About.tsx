@@ -82,7 +82,7 @@ export default function About() {
                     </div>
                     <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-primary to-accent-500"
+                        className="h-full bg-hero-gradient"
                         style={{ width: lang.level === "Upper" ? "85%" : "65%" }}
                       />
                     </div>
@@ -102,7 +102,7 @@ export default function About() {
             >
               <div className="rounded-2xl glass-card p-8">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent-500 flex items-center justify-center shadow-lg shadow-primary/30">
+                  <div className="w-16 h-16 rounded-full bg-hero-gradient flex items-center justify-center shadow-lg shadow-primary/30">
                     <span className="text-2xl font-bold text-white">R<span className="text-primary">MH</span></span>
                   </div>
                   <div>

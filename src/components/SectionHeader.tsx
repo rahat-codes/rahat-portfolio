@@ -16,7 +16,7 @@ export default function SectionHeader({
   return (
     <div className={`${className} ${align === "center" ? "text-center" : ""}`}>
       <span className="section-kicker">{eyebrow}</span>
-      <h2 className="text-4xl font-semibold tracking-tight">{title}</h2>
+      <h2 className="text-4xl font-semibold tracking-tight gradient-text">{title}</h2>
       {description && <p className="mt-2 text-muted-foreground">{description}</p>}
     </div>
   )

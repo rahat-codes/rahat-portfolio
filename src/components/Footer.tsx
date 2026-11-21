@@ -29,7 +29,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-accent-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-hero-gradient flex items-center justify-center">
                 <span className="text-[10px] text-white font-bold">R<span className="text-primary">MH</span></span>
               </div>
               <span className="font-bold text-xl tracking-tight">Rahat<span className="text-primary">MH</span></span>
