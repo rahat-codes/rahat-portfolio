@@ -1,6 +1,19 @@
 import type { Metadata } from "next"
+import { JetBrains_Mono, Manrope } from "next/font/google"
 import { ThemeProvider } from "../components/ThemeProvider"
 import "./globals.css"
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+})
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rahat-portfolio.vercel.app"),
@@ -36,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head />
-      <body className="font-sans antialiased">
+      <body className={`${manrope.variable} ${jetBrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider>
           <a href="#main-content" className="skip-link">Skip to main content</a>
           {children}
