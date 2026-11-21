@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { Github, Mail, Linkedin, ArrowRight } from "lucide-react"
 
 const footerLinks = [

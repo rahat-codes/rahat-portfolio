@@ -27,7 +27,7 @@ export default function Skills() {
               {category.category}
             </h3>
             <div className="space-y-4">
-              {category.items.map((skill, j) => (
+              {category.items.map((skill) => (
                 <div key={skill.name} className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="font-medium text-foreground">{skill.name}</span>

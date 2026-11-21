@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { ThemeProvider } from "../components/ThemeProvider"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rahat-portfolio.vercel.app"),
   title: "Rahat Md Mahadi Hasan | AI & Computer Engineering Student",
   description: "Portfolio of Rahat Md Mahadi Hasan - AI & Computer Engineering student at Dong-A University, full-stack developer, ML enthusiast, and open source contributor.",
   keywords: ["Rahat Md Mahadi Hasan", "portfolio", "AI", "Computer Engineering", "Machine Learning", "Full-Stack Developer", "Dong-A University"],
@@ -32,14 +33,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body className="font-sans antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className="font-sans antialiased">
+        <ThemeProvider>
           <a href="#main-content" className="skip-link">Skip to main content</a>
           {children}
-        </body>
-      </html>
-    </ThemeProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

@@ -1,40 +1,44 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
 import { Code, Layers, Award, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 import { personalInfo } from "../data/personal"
 
 // Simple scramble text effect component
 function ScrambleText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
-  const [display, setDisplay] = useState(text.split("").map(() => " "))
+  const [display, setDisplay] = useState(text.split(""))
 
   useEffect(() => {
-    const interval = setTimeout(() => {
+    let scramble: ReturnType<typeof setInterval> | undefined
+    const timeout = setTimeout(() => {
       let iteration = 0
       const totalChars = text.length
       const maxIterations = totalChars * 4
 
-      const scramble = setInterval(() => {
+      scramble = setInterval(() => {
         const newDisplay = text.split("").map((char, i) => {
           if (i < iteration) return char
           const random = chars[Math.floor(Math.random() * chars.length)]
-          return i === iteration ? random : display[i]
+          return i === iteration ? random : " "
         })
         setDisplay(newDisplay)
         iteration++
-        if (iteration > maxIterations) {
+        if (iteration >= maxIterations) {
           clearInterval(scramble)
           setDisplay(text.split(""))
         }
       }, 30)
-
-      return () => clearInterval(scramble)
     }, delay)
-  }, [text, delay, display])
 
-  return <span ref={undefined as any} className={className}>{display.join("")}</span>
+    return () => {
+      clearTimeout(timeout)
+      if (scramble) clearInterval(scramble)
+    }
+  }, [text, delay])
+
+  return <span className={className}>{display.join("")}</span>
 }
 
 const statItems = [
@@ -66,7 +70,7 @@ export default function Hero() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
-            Hi, I'm{" "}
+            Hi, I&apos;m{" "}
             <span className="block gradient-text">
               <ScrambleText text={personalInfo.name} className="text-inherit" delay={100} />
             </span>
@@ -102,7 +106,7 @@ export default function Hero() {
                 className="p-4 rounded-xl bg-secondary border border-border hover:bg-secondary/50 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <stat.icon className="w-4 h-4 {stat.color}" />
+                  <stat.icon className={`w-4 h-4 ${stat.color}`} />
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                     {stat.label}
                   </span>
@@ -165,7 +169,7 @@ export default function Hero() {
                         className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 border border-border/50"
                       >
                         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <stat.icon className="w-4 h-4 {stat.color}" />
+                          <stat.icon className={`w-4 h-4 ${stat.color}`} />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground">{stat.label}</p>

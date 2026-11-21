@@ -15,33 +15,22 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children, defaultTheme = "system" }: { children: ReactNode; defaultTheme?: Theme }) {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark")
+  const [systemDark, setSystemDark] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
+  )
+  const resolvedTheme: "light" | "dark" =
+    theme === "system" ? (systemDark ? "dark" : "light") : theme
 
   useEffect(() => {
-    updateResolvedTheme()
+    const media = window.matchMedia("(prefers-color-scheme: dark)")
+    const handleChange = () => setSystemDark(media.matches)
+    media.addEventListener("change", handleChange)
+    return () => media.removeEventListener("change", handleChange)
   }, [])
 
   useEffect(() => {
-    updateResolvedTheme()
-  }, [theme])
-
-  const updateResolvedTheme = () => {
-    if (theme === "system") {
-      const systemTheme =
-        typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"
-      setResolvedTheme(systemTheme)
-      if (typeof document !== "undefined") {
-        document.documentElement.classList.toggle("dark", systemTheme === "dark")
-      }
-    } else {
-      setResolvedTheme(theme)
-      if (typeof document !== "undefined") {
-        document.documentElement.classList.toggle("dark", theme === "dark")
-      }
-    }
-  }
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark")
+  }, [resolvedTheme])
 
   const toggleTheme = () => {
     const newTheme = resolvedTheme === "dark" ? "light" : "dark"
@@ -54,7 +43,7 @@ export function ThemeProvider({ children, defaultTheme = "system" }: { children:
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null
     if (stored) {
-      setTheme(stored)
+      queueMicrotask(() => setTheme(stored))
     }
   }, [])
 

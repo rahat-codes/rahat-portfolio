@@ -7,7 +7,6 @@ import {
   Menu,
   X,
   Github,
-  Mail,
   Sun,
   Moon,
   Code,

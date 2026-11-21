@@ -4,7 +4,6 @@ import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react"
 import { personalInfo } from "../data/personal"
-import { sanitizeHtml } from "../lib/security"
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -27,9 +26,9 @@ export default function Contact() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: sanitizeHtml(name),
-          email: sanitizeHtml(email),
-          message: sanitizeHtml(message),
+          name,
+          email,
+          message,
           website: honeypot,
         }),
       })
@@ -70,7 +69,7 @@ export default function Contact() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight">Get In Touch</h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Open to collaborations, internships, and interesting projects. Let's build something great together.
+            Open to collaborations, internships, and interesting projects. Let&apos;s build something great together.
           </p>
         </div>
 
@@ -112,29 +111,40 @@ export default function Contact() {
                     value: "rahat-codes",
                     href: personalInfo.github,
                   },
-                ].map((item, i) => (
-                  <a
-                    key={i}
-                    href={item.href}
-                    target={item.href && item.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-4 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-secondary transition-all ${
-                      item.href ? "" : "cursor-default"
-                    }`}
-                  >
-                    <div className="p-2 rounded bg-secondary">{item.icon}</div>
-                    <div>
-                      <div className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</div>
-                      <div className="text-sm font-medium text-foreground">{item.value}</div>
+                ].map((item, i) => {
+                  const content = (
+                    <>
+                      <div className="p-2 rounded bg-secondary">{item.icon}</div>
+                      <div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</div>
+                        <div className="text-sm font-medium text-foreground">{item.value}</div>
+                      </div>
+                    </>
+                  )
+                  const className = "flex items-center gap-4 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-secondary transition-all"
+
+                  return item.href ? (
+                    <a
+                      key={i}
+                      href={item.href ?? undefined}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={i} className={`${className} cursor-default`}>
+                      {content}
                     </div>
-                  </a>
-                ))}
+                  )
+                })}
               </div>
             </div>
 
             {/* Social links */}
             <div className="rounded-2xl glass-card p-6">
-              <h4 className="font-bold text-lg mb-4">Let's Connect</h4>
+              <h4 className="font-bold text-lg mb-4">Let&apos;s Connect</h4>
               <div className="flex gap-4">
                 <a
                   href="https://github.com/rahat-codes"

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { GraduationCap, Building2, Mail, Phone, MapPin, Github, Clock } from "lucide-react"
+import { GraduationCap, Building2, Github, Clock } from "lucide-react"
 import { personalInfo } from "../data/personal"
 import { education } from "../data/education"
 

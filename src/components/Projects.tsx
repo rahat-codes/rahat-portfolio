@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { ExternalLink, Code, Smartphone, Microscope, Cpu, Layers, Github } from "lucide-react"
+import { ExternalLink, Code, Smartphone, Microscope, Cpu, Layers, Github, type LucideIcon } from "lucide-react"
 import { projects } from "../data/projects"
 
-const techIconMap: Record<string, any> = {
+const techIconMap: Record<string, LucideIcon> = {
   React: Code,
   Flutter: Smartphone,
   Python: Microscope,

@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code2, Building, Briefcase } from "lucide-react"
+import { Code2, Building, Briefcase, type LucideIcon } from "lucide-react"
 import { experience } from "../data/experience"
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   "Den of Builders (DOB)": Code2,
   부마톡담길비: Building,
   "Dong-A University BIC": Briefcase,

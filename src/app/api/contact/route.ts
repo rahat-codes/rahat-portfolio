@@ -12,7 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { contactFormSchema, sanitizeContactForm, rateLimit, getClientIP, getCorsHeaders } from '../../../lib/security'
+import { contactFormSchema, rateLimit, getClientIP, getCorsHeaders } from '../../../lib/security'
 
 // Honeypot field name - bots fill this, humans don't
 const HONEYPOT_FIELD = 'website'
@@ -28,6 +28,13 @@ export async function OPTIONS(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const origin = request.headers.get('origin')
   const ip = getClientIP(request.headers)
+  const contentType = request.headers.get('content-type') || ''
+  if (!contentType.toLowerCase().includes('application/json')) {
+    return NextResponse.json(
+      { error: 'Content-Type must be application/json' },
+      { status: 415, headers: getCorsHeaders(origin) },
+    )
+  }
 
   // -------------------------------------------------------------------------
   // 1. Rate limiting
@@ -50,12 +57,19 @@ export async function POST(request: NextRequest) {
     // -------------------------------------------------------------------------
     // 2. Parse body
     // -------------------------------------------------------------------------
-    const body = await request.json()
+    const body: unknown = await request.json()
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json(
+        { error: 'Invalid JSON body' },
+        { status: 400, headers: getCorsHeaders(origin) },
+      )
+    }
+    const payload = body as Record<string, unknown>
 
     // -------------------------------------------------------------------------
     // 3. Honeypot check (if filled, it's a bot)
     // -------------------------------------------------------------------------
-    if (body[HONEYPOT_FIELD] && String(body[HONEYPOT_FIELD]).trim() !== '') {
+    if (payload[HONEYPOT_FIELD] && String(payload[HONEYPOT_FIELD]).trim() !== '') {
       // Silently accept but don't process - fool the bot
       return NextResponse.json({ message: 'Message received' }, {
         status: 200,
@@ -67,16 +81,16 @@ export async function POST(request: NextRequest) {
     // 4. Validate input
     // -------------------------------------------------------------------------
     const validation = contactFormSchema.safeParse({
-      name: body.name,
-      email: body.email,
-      message: body.message,
+      name: payload.name,
+      email: payload.email,
+      message: payload.message,
     })
 
     if (!validation.success) {
       return NextResponse.json(
         {
           error: 'Invalid input',
-          details: validation.error.errors.map((e) => ({
+          details: validation.error.issues.map((e) => ({
             field: e.path.join('.'),
             message: e.message,
           })),
@@ -89,12 +103,7 @@ export async function POST(request: NextRequest) {
     }
 
     // -------------------------------------------------------------------------
-    // 5. Sanitize (XSS protection)
-    // -------------------------------------------------------------------------
-    const sanitized = sanitizeContactForm(validation.data)
-
-    // -------------------------------------------------------------------------
-    // 6. Process (TODO: connect email service here)
+    // 5. Process (TODO: connect email service here)
     // -------------------------------------------------------------------------
     // Example:
     // await resend.emails.send({...})

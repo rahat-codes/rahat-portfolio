@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, FileText, Medal } from "lucide-react"
+import { Award, FileText, Medal, type LucideIcon } from "lucide-react"
 import { certifications } from "../data/certifications"
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   award: Award,
   certificate: FileText,
 }

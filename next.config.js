@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Production optimizations
-  swcMinify: true,
   // Disable powered-by header
   poweredByHeader: false,
   // Compress responses
   compress: true,
   images: {
-    domains: ['avatars.githubusercontent.com', 'images.unsplash.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {

@@ -10,10 +10,7 @@ import { rateLimit, getClientIP } from './lib/security'
 // Routes that should be protected (add admin routes here when you build them)
 const PROTECTED_ROUTES = ['/admin']
 
-// Public routes that don't need protection
-const PUBLIC_ROUTES = ['/', '/api/contact']
-
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const ip = getClientIP(request.headers)
 
