@@ -311,6 +311,76 @@
     z-index: 1;
   }
 
+  @keyframes orbiting-skills-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  .orbiting-skills-orbit {
+    border-color: color-mix(in oklab, var(--orbit-color) 34%, transparent);
+    box-shadow:
+      0 0 34px color-mix(in oklab, var(--orbit-color) 14%, transparent),
+      inset 0 0 28px color-mix(in oklab, var(--orbit-color) 8%, transparent);
+    animation-name: orbiting-skills-spin;
+    animation-duration: var(--orbit-duration, 36s);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--orbit-direction, normal);
+  }
+
+  .orbiting-skills-counter {
+    animation-name: orbiting-skills-spin;
+    animation-duration: var(--orbit-duration, 36s);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--counter-direction, reverse);
+  }
+
+  .orbiting-skills-stage:is(:hover, :focus-within) .orbiting-skills-orbit,
+  .orbiting-skills-stage:is(:hover, :focus-within) .orbiting-skills-counter {
+    animation-play-state: paused;
+  }
+
+  .orbiting-skills-stage[data-paused="true"] .orbiting-skills-orbit,
+  .orbiting-skills-stage[data-paused="true"] .orbiting-skills-counter {
+    animation-play-state: paused;
+  }
+
+  .orbiting-skill-node {
+    color: var(--skill-color);
+    border: 1px solid color-mix(in oklab, var(--skill-color) 42%, hsl(var(--border)));
+    background: hsl(var(--card) / 0.94);
+    box-shadow:
+      0 10px 24px hsl(var(--background) / 0.4),
+      inset 0 1px hsl(var(--foreground) / 0.07);
+    transition:
+      scale 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .orbiting-skill-node:hover,
+  .orbiting-skill-node:focus-visible {
+    scale: 1.12;
+    background: hsl(var(--card));
+    box-shadow:
+      0 0 25px color-mix(in oklab, var(--skill-color) 28%, transparent),
+      0 10px 24px hsl(var(--background) / 0.45),
+      inset 0 1px hsl(var(--foreground) / 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orbiting-skills-orbit,
+    .orbiting-skills-counter {
+      animation: none;
+    }
+
+    .orbiting-skill-node {
+      transition: none;
+    }
+  }
+
   .stack-marquee {
     overflow: hidden;
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
