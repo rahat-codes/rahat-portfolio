@@ -19,7 +19,7 @@ export const projects = [
     github: "https://github.com/rahat-codes/campusar",
     live: null,
     featured: true,
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19644f3?w=800&q=80",
+    image: "/images/projects/campusar.svg",
   },
   {
     title: "Chicken Disease Classification",
@@ -30,7 +30,7 @@ export const projects = [
     github: "https://github.com/rahat-codes/Chicken-Disease-Classification-Project",
     live: null,
     featured: true,
-    image: "https://images.unsplash.com/photo-1623464334842-5744820b91d9?w=800&q=80",
+    image: "/images/projects/chicken-ml.svg",
   },
   {
     title: "Adaptive Smart Desk Environment System",
@@ -41,7 +41,7 @@ export const projects = [
     github: "https://github.com/rahat-codes/Adaptive-Smart-Desk-Environment-System",
     live: null,
     featured: false,
-    image: "https://images.unsplash.com/photo-1535230707377-3b9237738305?w=800&q=80",
+    image: "/images/projects/smart-desk.svg",
   },
   {
     title: "Automotive Classification Research",
@@ -72,7 +72,7 @@ export const projects = [
     github: "https://github.com/rahat-codes/python-guessing-game",
     live: null,
     featured: false,
-    image: "https://images.unsplash.com/photo-1555089965-4d78d6c2f866?w=800&q=80",
+    image: "/images/projects/guessing-game.svg",
   },
   {
     title: "Moto Travel",
@@ -82,7 +82,7 @@ export const projects = [
     github: "https://github.com/rahat-codes/moto-travel",
     live: null,
     featured: false,
-    image: "https://images.unsplash.com/photo-1469854523084-cc6c0720277d?w=800&q=80",
+    image: "/images/projects/moto-travel.svg",
   },
   {
     title: "Nova Fintech",

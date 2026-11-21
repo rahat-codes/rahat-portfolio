@@ -10,10 +10,12 @@ import Education from "../components/Education"
 import Skills from "../components/Skills"
 import Contact from "../components/Contact"
 import BackToTop from "../components/BackToTop"
+import NoirMeshBackground from "../components/NoirMeshBackground"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+    <div className="site-shell relative isolate min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <NoirMeshBackground />
       <Navbar />
       <main id="main-content">
         <Hero />

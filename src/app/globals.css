@@ -109,6 +109,43 @@
 }
 
 @layer components {
+  .noir-mesh-background {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 32rem 26rem at var(--noir-x, 50%) var(--noir-y, 50%),
+        hsl(225 24% 1% / 0.82),
+        hsl(225 20% 3% / 0.42) 38%,
+        transparent 76%
+      ),
+      radial-gradient(
+        ellipse 25rem 22rem at calc(var(--noir-x, 50%) - 8rem) calc(var(--noir-y, 50%) + 4rem),
+        hsl(235 30% 16% / 0.16),
+        transparent 76%
+      ),
+      radial-gradient(
+        ellipse 25rem 19rem at calc(var(--noir-x, 50%) + 8rem) calc(var(--noir-y, 50%) - 5rem),
+        hsl(var(--primary) / 0.055),
+        transparent 76%
+      );
+    filter: blur(24px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease;
+  }
+
+  .site-shell > main,
+  .site-shell > footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .noir-mesh-background[data-active="true"] {
+    opacity: 1;
+  }
+
   .glass-card {
     @apply bg-card/80 border border-border rounded-2xl;
     box-shadow: 0 18px 60px hsl(225 12% 2% / 0.18);
@@ -233,6 +270,244 @@
     border-color: hsl(var(--primary) / 0.5);
     color: hsl(var(--foreground));
   }
+
+  .project-rail {
+    container-type: inline-size;
+    display: flex;
+    height: clamp(28rem, 55vw, 38rem);
+    overflow: hidden;
+    border-radius: 1.15rem;
+  }
+
+  .project-rail-card {
+    position: relative;
+    isolation: isolate;
+    flex: 1 1 0%;
+    min-width: 0;
+    overflow: hidden;
+    border: 0;
+    background: hsl(var(--card));
+    box-shadow: inset 0 0 0 1px hsl(var(--border));
+    transition:
+      flex-grow 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 250ms ease;
+  }
+
+  .project-rail-card + .project-rail-card {
+    border-left: 0;
+  }
+
+  .project-rail-card:first-child {
+    border-radius: 1.15rem 0 0 1.15rem;
+  }
+
+  .project-rail-card:last-child {
+    border-radius: 0 1.15rem 1.15rem 0;
+  }
+
+  .project-rail-card.is-active {
+    flex-grow: 12;
+    box-shadow: inset 0 0 0 1px hsl(var(--primary) / 0.35);
+  }
+
+  .project-rail-card__image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+  }
+
+  .project-rail-card__image img {
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-rail-card.is-active .project-rail-card__image img {
+    transform: scale(1.04);
+  }
+
+  .project-rail-card::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      linear-gradient(180deg, hsl(225 12% 4% / 0.08) 8%, transparent 36%),
+      linear-gradient(0deg, hsl(225 12% 4% / 0.98), hsl(225 12% 4% / 0.52) 48%, transparent 100%);
+    content: "";
+  }
+
+  .project-rail-card__number {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    z-index: 2;
+    color: hsl(var(--foreground) / 0.8);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    opacity: 1;
+    transform: translateX(-50%);
+    transition: opacity 180ms ease;
+  }
+
+  .project-rail-card.is-active .project-rail-card__number {
+    left: 2rem;
+    transform: none;
+  }
+
+  .project-rail-card__rail-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    color: hsl(var(--foreground) / 0.86);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: translate(-50%, -50%) rotate(180deg);
+    transition: opacity 180ms ease;
+  }
+
+  .project-rail-card.is-active .project-rail-card__rail-title {
+    opacity: 0;
+  }
+
+  .project-rail-card__trigger {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .project-rail-card__trigger:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: -6px;
+  }
+
+  .project-rail-card.is-active .project-rail-card__trigger {
+    pointer-events: none;
+  }
+
+  .project-rail-card__caption {
+    /* Keep copy at its expanded width while the surrounding card animates. */
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    display: flex;
+    width: var(--rail-caption-width, 60cqw);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem clamp(1.5rem, 3cqw, 2.75rem);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.75rem);
+    visibility: hidden;
+    transition:
+      opacity 220ms ease,
+      transform 350ms ease,
+      visibility 0s linear 220ms;
+  }
+
+  .project-rail-card.is-active .project-rail-card__caption {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+    transition:
+      opacity 250ms ease 160ms,
+      transform 350ms ease 160ms,
+      visibility 0s;
+  }
+
+  .project-rail-card__eyebrow {
+    margin-bottom: 0.8rem;
+    color: hsl(var(--primary));
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .project-rail-card__title {
+    max-width: 100%;
+    color: hsl(var(--foreground));
+    font-size: clamp(1.65rem, 3cqw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .project-rail-card__subtitle {
+    margin-top: 0.65rem;
+    color: hsl(var(--primary));
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .project-rail-card__description {
+    display: -webkit-box;
+    max-width: 52ch;
+    margin-top: 0.75rem;
+    overflow: hidden;
+    color: hsl(var(--foreground) / 0.74);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .project-rail-card__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .project-rail-card__technologies span {
+    border: 1px solid hsl(var(--foreground) / 0.18);
+    border-radius: 9999px;
+    padding: 0.35rem 0.65rem;
+    color: hsl(var(--foreground) / 0.78);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+  }
+
+  .project-rail-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .project-rail-card__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid hsl(var(--foreground) / 0.2);
+    border-radius: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    color: hsl(var(--foreground));
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .project-rail-card__links a:hover {
+    border-color: hsl(var(--primary));
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
 }
 
 @keyframes stack-marquee {
@@ -242,6 +517,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .noir-mesh-background {
+    transition: none;
+  }
+
   .stack-marquee {
     overflow-x: auto;
     mask-image: none;
@@ -249,6 +528,57 @@
 
   .stack-marquee-track {
     animation: none;
+  }
+
+  .project-rail-card,
+  .project-rail-card__image img,
+  .project-rail-card__caption {
+    transition: none;
+  }
+}
+
+@media (hover: none) {
+  .noir-mesh-background {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .project-rail {
+    height: 34rem;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .project-rail-card,
+  .project-rail-card.is-active {
+    flex: 0 0 min(82vw, 26rem);
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+    scroll-snap-align: start;
+  }
+
+  .project-rail-card + .project-rail-card {
+    border-left: 1px solid hsl(var(--border));
+  }
+
+  .project-rail-card__trigger,
+  .project-rail-card__rail-title {
+    display: none;
+  }
+
+  .project-rail-card__caption,
+  .project-rail-card.is-active .project-rail-card__caption {
+    width: 100%;
+    padding: 1.5rem;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
+    transition: none;
   }
 }
 

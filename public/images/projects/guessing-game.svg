@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="24" x2="760" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172130"/>
+      <stop offset="1" stop-color="#0b0e15"/>
+    </linearGradient>
+    <linearGradient id="number" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#67e8d4"/>
+      <stop offset="1" stop-color="#72a6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <circle cx="630" cy="132" r="120" fill="#62dcca" fill-opacity=".05"/>
+  <rect x="130" y="88" width="540" height="324" rx="22" fill="#10151d" stroke="#354250" stroke-width="2"/>
+  <path d="M130 145h540" stroke="#354250" stroke-width="2"/>
+  <circle cx="164" cy="117" r="7" fill="#ff7777"/>
+  <circle cx="188" cy="117" r="7" fill="#efc264"/>
+  <circle cx="212" cy="117" r="7" fill="#5cd9bd"/>
+  <text x="164" y="190" fill="#7d91a5" font-family="monospace" font-size="16">$ python guessing_game.py</text>
+  <text x="164" y="226" fill="#b9c9d7" font-family="monospace" font-size="15">Guess a number between 1 and 100:</text>
+  <rect x="164" y="251" width="166" height="72" rx="12" fill="#15242a" stroke="#4fd8c5" stroke-opacity=".55"/>
+  <text x="194" y="301" fill="url(#number)" font-family="monospace" font-size="38" font-weight="700">42</text>
+  <text x="356" y="286" fill="#64dfc9" font-family="monospace" font-size="14">> too low — try again</text>
+  <path d="M164 355h12m12 0h12m12 0h12" stroke="#73899a" stroke-width="5" stroke-linecap="round"/>
+  <rect x="38" y="38" width="187" height="34" rx="17" fill="#1c2936"/>
+  <text x="56" y="60" fill="#b2c4d2" font-family="monospace" font-size="12" letter-spacing="2">PYTHON / MINI GAME</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="30" x2="760" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#201529"/>
+      <stop offset="1" stop-color="#101017"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(0 240 -280 0 405 260)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#bd72ff" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#bd72ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <rect width="800" height="500" rx="28" fill="url(#glow)"/>
+  <path d="M130 106v288M670 106v288M130 106h540M130 394h540" stroke="#b88bd4" stroke-opacity=".18" stroke-width="2" stroke-dasharray="5 9"/>
+  <path d="M166 250h105m258 0h105M400 135v61m0 108v61" stroke="#9f75bb" stroke-opacity=".45" stroke-width="2"/>
+  <circle cx="400" cy="250" r="102" fill="#19151f" stroke="#be7df2" stroke-opacity=".7" stroke-width="2"/>
+  <ellipse cx="384" cy="274" rx="60" ry="43" fill="#f3e8d8"/>
+  <path d="M426 267c19-20 21-45 8-65-9-13-24-20-41-17-21 4-33 22-31 45" fill="#f3e8d8"/>
+  <circle cx="420" cy="207" r="25" fill="#f3e8d8"/>
+  <circle cx="428" cy="203" r="3.5" fill="#28212b"/>
+  <path d="m443 211 22 8-22 8z" fill="#f29a56"/>
+  <path d="M401 180c-8-16 4-21 12-10 5-18 20-12 17 2 15-12 24-1 13 10" fill="#f07878"/>
+  <path d="M334 268c30-16 54-7 61 12-24 13-46 9-61-12Z" fill="#e1cfb9"/>
+  <path d="m363 313-5 24m39-24 4 24m-47 0h17m21 0h17" stroke="#f29a56" stroke-width="5" stroke-linecap="round"/>
+  <rect x="38" y="38" width="248" height="34" rx="17" fill="#2b1d34"/>
+  <text x="56" y="60" fill="#d2b7e5" font-family="monospace" font-size="12" letter-spacing="2">VISION MODEL / INFERENCE</text>
+  <circle cx="596" cy="156" r="6" fill="#c17dff"/>
+  <circle cx="630" cy="190" r="4" fill="#e3a9ff"/>
+  <circle cx="581" cy="214" r="3" fill="#e3a9ff"/>
+  <circle cx="628" cy="324" r="5" fill="#c17dff"/>
+  <circle cx="584" cy="351" r="3" fill="#e3a9ff"/>
+</svg>

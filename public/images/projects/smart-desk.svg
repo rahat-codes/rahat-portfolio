@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12272a"/>
+      <stop offset="1" stop-color="#0b1118"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="300" y1="170" x2="500" y2="306" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#164b51"/>
+      <stop offset="1" stop-color="#17283c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <circle cx="610" cy="130" r="58" fill="#f2bc62" fill-opacity=".1"/>
+  <circle cx="610" cy="130" r="31" fill="#f2bc62" fill-opacity=".75"/>
+  <path d="M610 54v-20m0 192v-20m76-76h20m-192 0h20m130-54 15-15m-138 138 15-15m108 0 15 15m-138-138 15 15" stroke="#f2bc62" stroke-opacity=".65" stroke-width="4" stroke-linecap="round"/>
+  <rect x="266" y="105" width="270" height="190" rx="16" fill="#0c121a" stroke="#52787b" stroke-width="3"/>
+  <rect x="282" y="121" width="238" height="157" rx="8" fill="url(#screen)"/>
+  <path d="M310 230c25-26 45-18 66-48 18-26 43-34 68-32" stroke="#59e3cc" stroke-width="5" stroke-linecap="round"/>
+  <path d="M310 248h92m-92 14h58" stroke="#b1d2c9" stroke-opacity=".42" stroke-width="4" stroke-linecap="round"/>
+  <path d="M391 296v44m-58 0h116m-194 0h388l-25 16H280l-25-16Z" fill="#24353d" stroke="#52646c" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="178" y="362" width="45" height="40" rx="8" fill="#1c3439" stroke="#5dddc9" stroke-opacity=".6" stroke-width="2"/>
+  <circle cx="200" cy="382" r="8" fill="#5dddc9"/>
+  <path d="M200 362v-33m-16 0h32" stroke="#5dddc9" stroke-opacity=".8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M577 325v25m-13-25h26" stroke="#ecad55" stroke-width="4" stroke-linecap="round"/>
+  <rect x="38" y="38" width="235" height="34" rx="17" fill="#1a3033"/>
+  <text x="56" y="60" fill="#a9d8d1" font-family="monospace" font-size="12" letter-spacing="2">SMART DESK / SENSOR DATA</text>
+</svg>

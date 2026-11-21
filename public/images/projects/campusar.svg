@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111b2b"/>
+      <stop offset="1" stop-color="#090d14"/>
+    </linearGradient>
+    <linearGradient id="route" x1="125" y1="386" x2="655" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#48ead8"/>
+      <stop offset="1" stop-color="#75a9ff"/>
+    </linearGradient>
+    <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+      <path d="M38 0H0V38" stroke="#9bb7d5" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <rect width="800" height="500" rx="28" fill="url(#grid)"/>
+  <path d="M108 320 219 265l72 36 94-116 105 53 130-123" stroke="#92abc5" stroke-opacity=".2" stroke-width="2"/>
+  <path d="m120 384 122-71 93 29 99-119 116 17 130-126" stroke="url(#route)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 13"/>
+  <path d="M236 178h90v77h-90zM451 250h115v67H451zM564 119h95v88h-95z" fill="#19283a" stroke="#34485f" stroke-width="2"/>
+  <path d="M250 194h18v18h-18zm34 0h18v18h-18zm-34 34h18v18h-18zm212 39h20v16h-20zm37 0h20v16h-20zm84-131h18v18h-18zm34 0h18v18h-18z" fill="#51dccc" fill-opacity=".72"/>
+  <circle cx="120" cy="384" r="13" fill="#101a27" stroke="#48ead8" stroke-width="5"/>
+  <circle cx="680" cy="114" r="13" fill="#101a27" stroke="#75a9ff" stroke-width="5"/>
+  <rect x="38" y="38" width="204" height="34" rx="17" fill="#182433"/>
+  <text x="56" y="60" fill="#a9bbce" font-family="monospace" font-size="12" letter-spacing="2">CAMPUSAR / ROUTE</text>
+</svg>

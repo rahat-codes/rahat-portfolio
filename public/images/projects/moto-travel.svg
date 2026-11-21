@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="28" x2="736" y2="483" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1b2537"/>
+      <stop offset="1" stop-color="#0b1018"/>
+    </linearGradient>
+    <linearGradient id="road" x1="138" y1="414" x2="681" y2="103" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#50dcca"/>
+      <stop offset="1" stop-color="#85adff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)"/>
+  <circle cx="619" cy="131" r="43" fill="#f4ba71" fill-opacity=".8"/>
+  <path d="M0 329c113-51 191-49 290-7 103 43 183 49 291-11 84-47 154-61 219-41v230H0V329Z" fill="#141e2a"/>
+  <path d="M90 500c127-99 222-137 320-142 100-4 188 38 300 142" stroke="url(#road)" stroke-opacity=".65" stroke-width="5"/>
+  <path d="M184 500c102-68 166-92 227-94 67-2 130 23 207 94" stroke="#d8e6e8" stroke-opacity=".55" stroke-width="3" stroke-dasharray="11 17"/>
+  <circle cx="305" cy="338" r="47" stroke="#c7d7e1" stroke-width="8"/>
+  <circle cx="511" cy="338" r="47" stroke="#c7d7e1" stroke-width="8"/>
+  <circle cx="305" cy="338" r="8" fill="#51ddc9"/>
+  <circle cx="511" cy="338" r="8" fill="#51ddc9"/>
+  <path d="m305 338 77-74 69 74H305Zm77-74-37-35h-40m90 109 40-74 41 74m-133-74 43-6 28-29h44l31 26" stroke="#54ddca" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m401 197 24-31 37 2 24 31h-85Z" fill="#83a9ff" stroke="#a9c1ff" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="38" y="38" width="229" height="34" rx="17" fill="#202c3e"/>
+  <text x="56" y="60" fill="#bac9dd" font-family="monospace" font-size="12" letter-spacing="2">MOTO TRAVEL / EXPLORE</text>
+</svg>
