@@ -52,7 +52,7 @@ export default function Navbar() {
             <div className="w-8 h-8 rounded-lg border border-primary/30 bg-primary/10 flex items-center justify-center">
               <Code className="w-4 h-4 text-primary" />
             </div>
-            <span className="font-bold text-xl tracking-tight">
+            <span className="font-black text-xl tracking-[-0.04em]">
               R<span className="text-primary">MH</span>
             </span>
           </Link>

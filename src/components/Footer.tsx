@@ -41,7 +41,7 @@ export default function Footer() {
                   R<span className="text-primary">MH</span>
                 </span>
               </div>
-              <span className="text-xl font-bold tracking-tight">
+              <span className="text-xl font-black tracking-[-0.04em]">
                 Rahat<span className="text-primary">MH</span>
               </span>
             </div>
@@ -52,7 +52,7 @@ export default function Footer() {
 
           {footerGroups.map(group => (
             <div key={group.title}>
-              <h3 className="mb-6 font-bold">{group.title}</h3>
+              <h3 className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-foreground">{group.title}</h3>
               <ul className="space-y-3">
                 {group.links.map(link => (
                   <li key={link.label}>

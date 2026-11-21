@@ -14,10 +14,10 @@ export default function SectionHeader({
   className = "mb-12",
 }: SectionHeaderProps) {
   return (
-    <div className={`${className} ${align === "center" ? "text-center" : ""}`}>
+    <header className={`${className} ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}`}>
       <span className="section-kicker">{eyebrow}</span>
-      <h2 className="text-4xl font-semibold tracking-tight gradient-text">{title}</h2>
-      {description && <p className="mt-2 text-muted-foreground">{description}</p>}
-    </div>
+      <h2 className="gradient-text">{title}</h2>
+      {description && <p className="section-description">{description}</p>}
+    </header>
   )
 }
