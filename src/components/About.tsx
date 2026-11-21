@@ -1,10 +1,17 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { GraduationCap, Building2, Github, Clock } from "lucide-react"
+import { GraduationCap, Building2, Github, Clock, Mail, Phone, MapPin, type LucideIcon } from "lucide-react"
 import { personalInfo } from "../data/personal"
 import { education } from "../data/education"
 import SectionHeader from "./SectionHeader"
+
+const contactItems: { label: string; value: string; icon: LucideIcon; href: string | null }[] = [
+  { label: "Email", value: personalInfo.email, icon: Mail, href: `mailto:${personalInfo.email}` },
+  { label: "Phone", value: personalInfo.phone, icon: Phone, href: `tel:${personalInfo.phone}` },
+  { label: "Location", value: personalInfo.location, icon: MapPin, href: null },
+  { label: "GitHub", value: "rahat-codes", icon: Github, href: personalInfo.github },
+]
 
 export default function About() {
   return (
@@ -32,9 +39,11 @@ export default function About() {
 
             {/* Quick facts grid */}
             <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="p-6 rounded-2xl glass-card">
+              <div className="group p-6 rounded-2xl glass-card">
                 <div className="flex items-center gap-3 mb-4">
-                  <GraduationCap className="w-5 h-5 text-primary" />
+                  <span className="vui-icon-frame h-9 w-9 rounded-xl">
+                    <GraduationCap className="h-4 w-4" />
+                  </span>
                   <span className="font-semibold text-foreground">Education</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -45,9 +54,11 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl glass-card">
+              <div className="group p-6 rounded-2xl glass-card">
                 <div className="flex items-center gap-3 mb-4">
-                  <Building2 className="w-5 h-5 text-primary" />
+                  <span className="vui-icon-frame h-9 w-9 rounded-xl">
+                    <Building2 className="h-4 w-4" />
+                  </span>
                   <span className="font-semibold text-foreground">Location</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -102,11 +113,10 @@ export default function About() {
 
                 <div className="space-y-4">
                   {[
-                    { label: "Email", value: personalInfo.email, icon: "✉", href: `mailto:${personalInfo.email}` },
-                    { label: "Phone", value: personalInfo.phone, icon: "📞", href: `tel:${personalInfo.phone}` },
-                    { label: "Location", value: personalInfo.location, icon: "📍", href: null },
-                    { label: "GitHub", value: "rahat-codes", icon: "🐙", href: personalInfo.github },
-                  ].map((item) => (
+                    ...contactItems,
+                  ].map((item) => {
+                    const Icon = item.icon
+                    return (
                     <a
                       key={item.label}
                       href={item.href ?? undefined}
@@ -116,13 +126,16 @@ export default function About() {
                         item.href ? "" : "cursor-default"
                       }`}
                     >
-                      <span className="text-lg">{item.icon}</span>
+                      <span className="vui-icon-frame h-9 w-9 rounded-lg">
+                        <Icon className="h-4 w-4" />
+                      </span>
                       <div>
                         <div className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</div>
                         <div className="text-sm font-medium text-foreground">{item.value}</div>
                       </div>
                     </a>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
@@ -132,16 +145,18 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="rounded-2xl glass-card p-6 flex items-center justify-between"
+              className="group rounded-2xl glass-card p-6 flex items-center justify-between"
             >
               <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-primary" />
+                <span className="vui-icon-frame h-9 w-9 rounded-xl">
+                  <Clock className="h-4 w-4" />
+                </span>
                 <div>
                   <div className="text-sm text-muted-foreground uppercase tracking-wider">Building since</div>
                   <div className="text-lg font-bold text-foreground">2024</div>
                 </div>
               </div>
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <div className="vui-icon-frame h-12 w-12 rounded-full">
                 <Github className="w-6 h-6 text-primary" />
               </div>
             </motion.div>

@@ -27,8 +27,10 @@ export default function Education() {
                 <p className="text-xs text-muted-foreground">{edu.location}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <GraduationCap className="w-4 h-4 text-primary" />
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <span className="vui-icon-frame h-8 w-8 rounded-lg">
+                <GraduationCap className="h-4 w-4" />
+              </span>
               <span>{edu.details}</span>
             </div>
           </SpotlightCard>

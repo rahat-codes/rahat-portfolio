@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react"
+import { Mail, Phone, MapPin, Github, Linkedin, ArrowRight, LoaderCircle } from "lucide-react"
 import { personalInfo } from "../data/personal"
 import SectionHeader from "./SectionHeader"
 
@@ -84,7 +84,9 @@ export default function Contact() {
           >
             <div className="rounded-2xl glass-card p-8">
               <div className="flex items-center gap-3 mb-6">
-                <Mail className="w-5 h-5 text-primary" />
+                <span className="vui-icon-frame h-9 w-9 rounded-xl">
+                  <Mail className="h-4 w-4" />
+                </span>
                 <h3 className="text-xl font-bold text-foreground">Contact Information</h3>
               </div>
               <div className="space-y-5">
@@ -116,7 +118,7 @@ export default function Contact() {
                 ].map((item, i) => {
                   const content = (
                     <>
-                      <div className="p-2 rounded bg-secondary">{item.icon}</div>
+                      <div className="vui-icon-frame h-10 w-10 rounded-xl">{item.icon}</div>
                       <div>
                         <div className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</div>
                         <div className="text-sm font-medium text-foreground">{item.value}</div>
@@ -152,13 +154,13 @@ export default function Contact() {
                   href="https://github.com/rahat-codes"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  className="vui-icon-frame h-12 w-12 rounded-xl hover:bg-primary hover:text-primary-foreground"
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:mhr1760@gmail.com"
-                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  className="vui-icon-frame h-12 w-12 rounded-xl hover:bg-primary hover:text-primary-foreground"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
@@ -166,9 +168,9 @@ export default function Contact() {
                   href="https://linkedin.com/in/rahat-codes"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all opacity-50"
+                  className="vui-icon-frame h-12 w-12 rounded-xl hover:bg-primary hover:text-primary-foreground opacity-50"
                 >
-                  <span className="text-sm">in</span>
+                  <Linkedin className="h-5 w-5" />
                 </a>
               </div>
             </div>
@@ -247,7 +249,7 @@ export default function Contact() {
               >
                 {isSubmitting ? (
                   <>
-                    Sending... <span className="animate-spin ml-2">⟳</span>
+                    Sending... <LoaderCircle className="ml-2 inline h-4 w-4 animate-spin" />
                   </>
                 ) : (
                   <>

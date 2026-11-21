@@ -33,7 +33,7 @@ export default function Experience() {
               key={exp.company}
               className="group relative mb-5 rounded-xl border border-border bg-card/70 p-6 pl-16 transition-colors hover:border-primary/40 sm:p-7 sm:pl-[4.5rem]"
             >
-              <div className="absolute left-[1.05rem] top-7 flex h-8 w-8 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
+              <div className="vui-icon-frame absolute left-[1.05rem] top-7 h-8 w-8 rounded-lg">
                 <Icon className="h-4 w-4" />
               </div>
 

@@ -109,6 +109,30 @@
 }
 
 @layer components {
+  .vui-icon-frame {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid hsl(var(--primary) / 0.22);
+    background: linear-gradient(145deg, hsl(var(--primary) / 0.1), hsl(var(--card) / 0.42));
+    color: hsl(var(--primary));
+    box-shadow: inset 0 1px hsl(var(--foreground) / 0.04);
+    transition:
+      border-color 220ms ease,
+      background 220ms ease,
+      box-shadow 220ms ease,
+      translate 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .vui-icon-frame,
+  .vui-icon-frame:hover {
+    border-color: hsl(var(--primary) / 0.52);
+    background: linear-gradient(145deg, hsl(var(--primary) / 0.16), hsl(var(--card) / 0.58));
+    box-shadow: 0 8px 24px hsl(var(--primary) / 0.12), inset 0 1px hsl(var(--foreground) / 0.06);
+    translate: 0 -2px;
+  }
+
   .noir-mesh-background {
     position: fixed;
     z-index: 0;
@@ -510,6 +534,22 @@
   }
 }
 
+svg.lucide {
+  stroke-width: 1.65;
+  transition:
+    color 200ms ease,
+    filter 200ms ease,
+    scale 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a:hover svg.lucide,
+button:not(:disabled):hover svg.lucide {
+  filter: drop-shadow(0 0 7px hsl(var(--primary) / 0.38));
+  scale: 1.06;
+  translate: 0 -1px;
+}
+
 @keyframes stack-marquee {
   to {
     transform: translateX(-50%);
@@ -517,6 +557,24 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  svg.lucide,
+  .vui-icon-frame {
+    transition: none;
+  }
+
+  a:hover svg.lucide,
+  button:not(:disabled):hover svg.lucide {
+    filter: none;
+    scale: 1;
+    translate: 0 0;
+  }
+
+  .group:hover .vui-icon-frame,
+  .vui-icon-frame:hover {
+    box-shadow: inset 0 1px hsl(var(--foreground) / 0.04);
+    translate: 0 0;
+  }
+
   .noir-mesh-background {
     transition: none;
   }

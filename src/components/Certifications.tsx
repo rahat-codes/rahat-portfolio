@@ -51,7 +51,7 @@ export default function Certifications() {
             <SpotlightCard
               key={i}
               delay={i * 0.08}
-              className="rounded-2xl border border-border bg-card/75 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-black/10"
+              className="group rounded-2xl border border-border bg-card/75 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-black/10"
             >
               <div className="flex items-center gap-2 mb-4">
                 <div className={`w-2.5 h-2.5 rounded-full ${config.color}`} />
@@ -59,7 +59,7 @@ export default function Certifications() {
                   {config.label}
                 </span>
               </div>
-              <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${config.bg}`}>
+              <div className={`vui-icon-frame mb-4 h-10 w-10 rounded-xl ${config.bg}`}>
                 <Icon className={`h-5 w-5 ${config.color}`} />
               </div>
               <h3 className="font-bold text-lg text-foreground mb-1">{cert.name}</h3>
