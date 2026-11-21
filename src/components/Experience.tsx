@@ -9,7 +9,7 @@ import SectionHeader from "./SectionHeader"
 const iconMap: Record<string, LucideIcon> = {
   "Den of Builders (DOB)": Code2,
   부마톡담길비: Building,
-  "Dong-A University BIC": Briefcase,
+  "Tongmyong University BIC": Briefcase,
 }
 
 export default function Experience() {

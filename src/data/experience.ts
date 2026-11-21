@@ -26,7 +26,7 @@ export const experience = [
     ],
   },
   {
-    company: "Dong-A University BIC (Busan International College)",
+    company: "Tongmyong University BIC",
     role: "Student Counselor",
     period: "2024.09 – Present",
     type: "On-campus",
