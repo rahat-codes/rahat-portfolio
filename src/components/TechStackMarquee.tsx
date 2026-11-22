@@ -24,7 +24,7 @@ export default function TechStackMarquee() {
             <div className="stack-marquee-group" key={copy} aria-hidden={copy === 1}>
               {stack.map((name) => (
                 <span key={name} className="stack-marquee-item">
-                  <span className="mr-3 text-primary">✳</span>{name}
+                  {name}
                 </span>
               ))}
             </div>

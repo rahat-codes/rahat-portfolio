@@ -2,6 +2,7 @@
 
 import { useCallback, useState, type FormEvent } from "react"
 import SectionHeader from "../SectionHeader"
+import { GlobeWireframe } from "./GlobeWireframe"
 import { personalInfo } from "../../data/personal"
 
 interface ContactResponse {
@@ -68,6 +69,7 @@ export default function ContactWithGlobe() {
       <SectionHeader title="Contact" />
       <div className="grid max-w-5xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
+          <GlobeWireframe className="mx-auto mb-8 max-w-sm" />
           <ul className="space-y-5">
             {contactLinks.map((item) => (
               <li key={item.label}>

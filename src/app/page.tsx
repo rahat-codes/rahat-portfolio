@@ -8,13 +8,18 @@ import Certifications from "../components/Certifications"
 import Education from "../components/Education"
 import Skills from "../components/Skills"
 import Contact from "../components/Contact"
+import BackToTop from "../components/BackToTop"
+import NoirMeshBackground from "../components/NoirMeshBackground"
+import TechStackMarquee from "../components/TechStackMarquee"
 
 export default function Home() {
   return (
     <div className="site-shell relative isolate min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <NoirMeshBackground />
       <Navbar />
       <main id="main-content">
         <Hero />
+        <TechStackMarquee />
         <Projects />
         <About />
         <Experience />
@@ -23,7 +28,7 @@ export default function Home() {
         <Education />
         <Contact />
       </main>
-      <Footer />
+      <BackToTop />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
@@ -17,8 +18,11 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("#home")
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   const handleScroll = useCallback(() => {
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight
+    setScrollProgress(documentHeight > 0 ? Math.min(100, (window.scrollY / documentHeight) * 100) : 0)
     let current = "#home"
     for (const link of navLinks) {
       const section = document.querySelector(link.href)
@@ -56,7 +60,16 @@ export default function Navbar() {
       className="fixed z-50 w-full bg-[#131313]/95 px-6 py-4 sm:px-8 lg:px-12"
       aria-label="Primary navigation"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between">
+        <span
+          className="absolute -bottom-4 left-0 h-px w-full origin-left bg-primary/20"
+          aria-hidden="true"
+        />
+        <span
+          className="absolute -bottom-4 left-0 h-px w-full origin-left bg-primary"
+          style={{ transform: `scaleX(${scrollProgress / 100})` }}
+          aria-hidden="true"
+        />
         <Link href="#home" className="text-lg font-semibold text-foreground" aria-label="Go to home">
           Rahat
         </Link>
@@ -89,29 +102,35 @@ export default function Navbar() {
         </button>
       </div>
 
-      {isOpen && (
-        <div
-          id="mobile-navigation"
-          className="mx-auto mt-4 max-w-7xl bg-[#131313] py-3 lg:hidden"
-        >
-          <div className="grid gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`text-sm transition-colors ${
-                  activeSection === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-4 max-w-7xl overflow-hidden bg-[#131313] py-3 lg:hidden"
+          >
+            <div className="grid gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm transition-colors ${
+                    activeSection === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
