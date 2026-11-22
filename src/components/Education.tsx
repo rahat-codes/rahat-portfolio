@@ -1,39 +1,17 @@
-"use client"
-
-import { GraduationCap } from "lucide-react"
 import { education } from "../data/education"
 import SectionHeader from "./SectionHeader"
-import SpotlightCard from "./ui/SpotlightCard"
 
 export default function Education() {
   return (
     <section id="education" className="section-container">
-      <SectionHeader eyebrow="07 / Education" title="Education" description="Academic background" />
-
-      <div className="max-w-3xl mx-auto">
-        {education.map((edu, i) => (
-          <SpotlightCard
-            key={i}
-            delay={i * 0.1}
-            className="group mb-8 rounded-[20px] border border-white bg-[#131313] p-8 transition-all hover:border-primary"
-          >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-              <div>
-                <h3 className="text-xl font-bold text-foreground">{edu.institution}</h3>
-                <p className="text-primary font-medium">{edu.degree}</p>
-              </div>
-              <div className="text-right">
-                <p className="font-mono text-sm font-bold text-foreground">{edu.period}</p>
-                <p className="text-xs text-muted-foreground">{edu.location}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="vui-icon-frame h-8 w-8 rounded-lg">
-                <GraduationCap className="h-4 w-4" />
-              </span>
-              <span>{edu.details}</span>
-            </div>
-          </SpotlightCard>
+      <SectionHeader title="Education" />
+      <div className="max-w-3xl space-y-8">
+        {education.map((item) => (
+          <article key={item.institution}>
+            <h3 className="text-xl font-semibold text-foreground">{item.institution}</h3>
+            <p className="mt-1 text-muted-foreground">{item.degree}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{item.period} · {item.location}</p>
+          </article>
         ))}
       </div>
     </section>

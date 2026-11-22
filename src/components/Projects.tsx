@@ -1,28 +1,29 @@
-import { Github } from "lucide-react"
-import AnimatedLink from "./ui/AnimatedLink"
+import { projects } from "../data/projects"
 import SectionHeader from "./SectionHeader"
-import ProjectRail from "./ProjectRail"
 
 export default function Projects() {
   return (
     <section id="projects" className="section-container">
-      <div className="mb-12 flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-        <SectionHeader
-          eyebrow="02 / Selected work"
-          title="Projects"
-          description="Selected work from coursework, research, and personal builds"
-          className="mb-0"
-        />
-        <AnimatedLink
-          href="https://github.com/rahat-codes"
-          external
-          variant="outline"
-          className="shrink-0 gap-2 text-sm"
-        >
-          <Github className="w-4 h-4" /> View All on GitHub
-        </AnimatedLink>
+      <SectionHeader title="Projects" description="Selected work from coursework, research, and personal builds." />
+      <div className="space-y-12">
+        {projects.map((project) => (
+          <article key={project.title} className="max-w-3xl">
+            <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
+            <p className="mt-1 text-muted-foreground">{project.subtitle}</p>
+            <p className="mt-3 leading-relaxed text-muted-foreground">{project.description}</p>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <a className="text-primary transition-colors hover:text-foreground" href={project.github} target="_blank" rel="noopener noreferrer">
+                Source code
+              </a>
+              {project.live && (
+                <a className="text-primary transition-colors hover:text-foreground" href={project.live} target="_blank" rel="noopener noreferrer">
+                  Live project
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-      <ProjectRail />
     </section>
   )
 }
