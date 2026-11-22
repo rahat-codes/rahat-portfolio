@@ -16,7 +16,7 @@ export default function SectionHeader({
   return (
     <header className={`${className} ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}`}>
       <span className="section-kicker">{eyebrow}</span>
-      <h2 className="gradient-text">{title}</h2>
+      <h2 className="editorial-section-title">{title}</h2>
       {description && <p className="section-description">{description}</p>}
     </header>
   )

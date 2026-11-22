@@ -7,16 +7,16 @@ const heroTitle = `${nameParts.slice(0, 2).join(" ")}\n${nameParts.slice(2).join
 
 const accentThemes: NexaTheme[] = [
   {
-    id: "cyan",
-    label: "Cyan",
-    accent: "hsl(184 92% 52%)",
-    ink: "hsl(225 12% 4%)",
+    id: "mint",
+    label: "Mint",
+    accent: "#3cffd0",
+    ink: "#000000",
   },
   {
-    id: "sky",
-    label: "Sky",
-    accent: "hsl(198 88% 62%)",
-    ink: "hsl(225 12% 4%)",
+    id: "ultraviolet",
+    label: "Ultraviolet",
+    accent: "#5200ff",
+    ink: "#ffffff",
   },
 ]
 
@@ -71,7 +71,7 @@ export default function Hero() {
       secondaryAction={{ label: "Get in Touch", href: "#contact" }}
       stats={stats}
       themes={accentThemes}
-      defaultThemeId="cyan"
+      defaultThemeId="mint"
       displayFontFamily="var(--font-sans)"
       bodyFontFamily="var(--font-sans)"
       showToolbar={false}

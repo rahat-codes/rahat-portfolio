@@ -39,7 +39,7 @@ export default function Experience() {
           return (
             <div className="experience-stack__item" key={exp.company} style={stackStyle}>
               <SpotlightCard
-                className="group relative rounded-xl border border-border bg-card p-6 pl-16 shadow-xl shadow-black/20 transition-colors hover:border-primary/40 sm:p-7 sm:pl-[4.5rem]"
+                className="group relative rounded-[20px] border border-white bg-[#131313] p-6 pl-16 transition-colors hover:border-primary sm:p-7 sm:pl-[4.5rem]"
               >
                 <div className="vui-icon-frame absolute left-[1.05rem] top-7 h-8 w-8 rounded-lg">
                   <Icon className="h-4 w-4" />

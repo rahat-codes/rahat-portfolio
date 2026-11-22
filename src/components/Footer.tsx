@@ -26,11 +26,10 @@ export default function Footer() {
   return (
     <footer className="relative isolate min-h-[26rem] overflow-hidden border-t border-border/70 bg-background/45 backdrop-blur-md">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_48%,hsl(var(--primary)/0.11),transparent_44%),radial-gradient(ellipse_at_10%_100%,hsl(198_88%_62%/0.045),transparent_48%)]" />
+        <div className="absolute inset-0 bg-[#131313]" />
         <div className="absolute -right-36 top-1/2 w-[28rem] -translate-y-1/2 opacity-25 sm:-right-20 sm:w-[34rem] lg:right-[5%] lg:w-[38rem]">
           <GlobeWireframe decorative className="!max-w-none" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/40 to-background/15" />
       </div>
       <div className="section-container relative z-10">
         <div className="mb-12 grid gap-10 md:grid-cols-4 md:gap-12">

@@ -3,64 +3,59 @@
 @tailwind utilities;
 
 :root {
-  --background: 225 12% 4%;
-  --foreground: 210 20% 96%;
-  --card: 225 10% 7%;
-  --card-foreground: 210 20% 96%;
-  --popover: 225 10% 7%;
-  --popover-foreground: 210 20% 96%;
-  --primary: 184 92% 52%;
-  --primary-foreground: 225 12% 4%;
-  --primary-glow: 184 92% 52% / 0.28;
-  --secondary: 225 9% 11%;
-  --secondary-foreground: 210 20% 96%;
-  --muted: 225 9% 12%;
-  --muted-foreground: 220 8% 62%;
-  --accent: 225 9% 13%;
-  --accent-foreground: 210 20% 96%;
-  --destructive: 0 72% 54%;
-  --destructive-foreground: 210 20% 96%;
-  --border: 220 8% 17%;
-  --input: 220 8% 17%;
-  --ring: 184 92% 52%;
-  --radius: 0.7rem;
+  --background: 0 0% 7.45%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 18%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 7.45%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 165 100% 62%;
+  --primary-foreground: 0 0% 0%;
+  --primary-glow: 165 100% 62% / 0.18;
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 91%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 58%;
+  --accent: 257 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 257 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 58%;
+  --ring: 165 100% 62%;
+  --radius: 1.25rem;
 
   /* System font stacks (replaces next/font/google) */
-  --font-sans: var(--font-manrope, "Aptos"), "Aptos", "Segoe UI", sans-serif;
+  --font-sans: var(--font-manrope, "Helvetica"), "Helvetica", "Arial", sans-serif;
   --font-mono: var(--font-jetbrains, "Cascadia Mono"), "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
 
-  --gradient-primary: linear-gradient(135deg, hsl(184 92% 52%), hsl(198 88% 62%));
-  --gradient-secondary: linear-gradient(180deg, hsl(225 10% 7%) 0%, hsl(225 9% 11%) 100%);
-  --gradient-text: linear-gradient(110deg, hsl(210 20% 98%) 20%, hsl(184 92% 65%) 100%);
-  --page-background-image:
-    radial-gradient(ellipse at 72% 12%, hsl(var(--primary) / 0.1), transparent 46%),
-    radial-gradient(ellipse at 16% 76%, hsl(198 88% 62% / 0.035), transparent 48%),
-    linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+  --gradient-primary: none;
+  --gradient-secondary: none;
+  --gradient-text: none;
+  --page-background-image: none;
 }
 
 .light {
-  --background: 210 20% 98%;
-  --foreground: 225 12% 9%;
-  --card: 0 0% 100%;
-  --card-foreground: 225 12% 9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 225 12% 9%;
-  --primary: 187 86% 34%;
-  --primary-foreground: 0 0% 100%;
-  --primary-glow: 187 86% 34% / 0.18;
-  --secondary: 210 16% 94%;
-  --secondary-foreground: 225 12% 9%;
-  --muted: 210 16% 94%;
-  --muted-foreground: 220 8% 40%;
-  --accent: 210 16% 92%;
-  --accent-foreground: 225 12% 9%;
-  --border: 215 14% 86%;
-  --input: 215 14% 86%;
-  --ring: 187 86% 34%;
-  --gradient-primary: linear-gradient(135deg, hsl(187 86% 34%), hsl(198 82% 43%));
-  --gradient-secondary: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 16% 94%) 100%);
-  --gradient-text: linear-gradient(110deg, hsl(225 12% 9%) 20%, hsl(187 86% 34%) 100%);
+  --background: 0 0% 7.45%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 18%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 7.45%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 165 100% 62%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 91%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 58%;
+  --accent: 257 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 58%;
+  --ring: 165 100% 62%;
+  --gradient-primary: none;
+  --gradient-secondary: none;
+  --gradient-text: none;
 }
 
 @layer base {
@@ -122,6 +117,81 @@
 }
 
 @layer components {
+  body {
+    background: #131313;
+  }
+
+  .editorial-section-title {
+    margin: 0 0 1rem;
+    color: #ffffff;
+    font-family: Impact, var(--font-sans);
+    font-size: clamp(3.75rem, 8vw, 6.75rem);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+  }
+
+  .section-description {
+    max-width: 42rem;
+    color: #949494;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .section-kicker {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    color: #3cffd0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .glass-card,
+  .spotlight-card {
+    border: 1px solid #ffffff !important;
+    border-radius: 20px !important;
+    background: #131313 !important;
+    box-shadow: none !important;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    border-radius: 24px;
+    box-shadow: none;
+  }
+
+  .btn-primary {
+    border: 0;
+    background: #3cffd0;
+    color: #000000;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  .btn-primary:hover {
+    border: 1px solid #c2c2c2;
+    background: rgba(255, 255, 255, 0.2);
+    color: #000000;
+  }
+
+  .btn-outline {
+    border: 1px solid #3cffd0;
+    background: transparent;
+    color: #3cffd0;
+  }
+
+  .btn-outline:hover {
+    border-color: #3860be;
+    background: #3860be;
+    color: #ffffff;
+  }
+
   .profile-parallax-card {
     perspective: 1100px;
     transform-style: preserve-3d;
@@ -486,9 +556,7 @@
     position: absolute;
     z-index: -1;
     inset: 0;
-    background:
-      linear-gradient(180deg, hsl(225 12% 4% / 0.08) 8%, transparent 36%),
-      linear-gradient(0deg, hsl(225 12% 4% / 0.98), hsl(225 12% 4% / 0.52) 48%, transparent 100%);
+    background: hsl(0 0% 7.45% / 0.62);
     content: "";
   }
 
@@ -861,7 +929,7 @@ section.section-container h3 {
 
 @layer utilities {
   .bg-hero-gradient {
-    background-image: var(--gradient-primary);
+    background: #3cffd0;
   }
 
   .text-shadow {

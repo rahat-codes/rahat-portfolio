@@ -39,7 +39,7 @@ export default function About() {
 
             {/* Quick facts grid */}
             <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="group p-6 rounded-2xl glass-card">
+              <div className="group p-6 rounded-[20px] glass-card">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="vui-icon-frame h-9 w-9 rounded-xl">
                     <GraduationCap className="h-4 w-4" />
@@ -54,7 +54,7 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="group p-6 rounded-2xl glass-card">
+              <div className="group p-6 rounded-[20px] glass-card">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="vui-icon-frame h-9 w-9 rounded-xl">
                     <Building2 className="h-4 w-4" />
@@ -100,9 +100,9 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-6"
             >
-              <div className="rounded-2xl glass-card p-8">
+              <div className="rounded-[20px] glass-card p-8">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="relative flex size-16 items-center justify-center rounded-full border border-primary/25 bg-hero-gradient shadow-[0_12px_32px_hsl(var(--primary)/0.22)] ring-4 ring-primary/5">
+                  <div className="relative flex size-16 items-center justify-center rounded-full border border-primary bg-primary">
                     <span className="text-xl font-black tracking-[-0.06em] text-primary-foreground">
                       R<span className="text-primary-foreground/75">MH</span>
                     </span>

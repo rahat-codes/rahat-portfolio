@@ -47,7 +47,7 @@ export default function Skills() {
             <SpotlightCard
               key={category.category}
               delay={i * 0.1}
-              className="rounded-2xl border border-border bg-card/75 p-6 transition-colors hover:border-primary/35"
+              className="rounded-[20px] border border-white bg-[#131313] p-6 transition-colors hover:border-primary"
             >
               <h3 className="mb-6 flex items-center gap-2 text-lg font-bold">
                 <span className="size-2 rounded-full bg-primary" />

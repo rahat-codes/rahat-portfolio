@@ -15,7 +15,7 @@ export default function Education() {
           <SpotlightCard
             key={i}
             delay={i * 0.1}
-            className="group mb-8 rounded-2xl border border-border bg-card/75 p-8 transition-all hover:border-primary/40"
+            className="group mb-8 rounded-[20px] border border-white bg-[#131313] p-8 transition-all hover:border-primary"
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
               <div>
