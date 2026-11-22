@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion"
 import { personalInfo } from "../data/personal"
 import SectionHeader from "./SectionHeader"
